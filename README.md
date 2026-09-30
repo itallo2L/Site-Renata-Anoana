@@ -14,18 +14,18 @@ Prévia publicada (para enviar o link sem precisar do arquivo): https://claude.a
 
 ## Estrutura do catálogo
 
-O site tem 5 categorias de filtro: Anéis, Colares, Brincos, Pulseiras e Conjuntos (peças que aparecem juntas na mesma foto, como anel + brinco).
+O site trabalha com 6 categorias: Colares, Anéis, Pulseiras, Braceletes, Brincos e Pingentes. Os filtros só aparecem para categorias que têm pelo menos um produto.
 
 | Produto | Categoria | Preço |
 |---|---|---|
-| Conjunto Coral Vermelho | Conjuntos | R$ 379,90 |
+| Conjunto Coral Vermelho | Anéis | R$ 379,90 |
 | Colar Lua de Turquesa | Colares | R$ 259,90 |
 | Anel Rosa Vermelha | Anéis | R$ 179,90 |
-| Conjunto Esmeralda Vintage | Conjuntos | R$ 459,90 |
-| Conjunto Rubi Vintage | Conjuntos | R$ 429,90 |
+| Conjunto Esmeralda Vintage | Anéis | R$ 459,90 |
+| Conjunto Rubi Vintage | Anéis | R$ 429,90 |
 | Brinco Gota Turquesa | Brincos | R$ 169,90 |
-| Bracelete Prata Lisa | Pulseiras | R$ 219,90 |
-| Conjunto Pedra Verde | Conjuntos | R$ 329,90 |
+| Bracelete Prata Lisa | Braceletes | R$ 219,90 |
+| Conjunto Pedra Verde | Anéis | R$ 329,90 |
 
 > ⚠️ **Os preços acima foram estimados**, já que não foram informados pela Renata Anoana. Confirme os valores reais antes de divulgar o site.
 
