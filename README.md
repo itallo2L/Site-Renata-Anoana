@@ -34,20 +34,22 @@ O site trabalha com 6 categorias: Colares, Anéis, Pulseiras, Braceletes, Brinco
 | Brinco Gota Turquesa | Brincos | R$ 169,90 |
 | Bracelete Prata Lisa | Braceletes | R$ 219,90 |
 | Conjunto Pedra Verde | Anéis | R$ 329,90 |
-| Anel Marquise Verde | Anéis · Bijuteria | Consulte o valor |
-| Pulseira Flores Verdes | Pulseiras · Bijuteria | Consulte o valor |
-| Brinco Oval Verde | Brincos · Bijuteria | Consulte o valor |
-| Trio de Anéis Olho de Tigre | Anéis · Bijuteria | Consulte o valor |
-| Braceletes Quadrados e Argolinhas | Braceletes · Bijuteria | Consulte o valor |
-| Anéis Mosaico Coloridos | Anéis · Bijuteria | Consulte o valor |
-| Conjunto Verde: Anéis e Pulseira | Anéis · Bijuteria | Consulte o valor |
-| Anéis Vermelho e Rosa | Anéis · Bijuteria | Consulte o valor |
-| Conjunto Vermelho: Brincos e Pulseira | Brincos · Bijuteria | Consulte o valor |
-| Brinco Quadrado Azul | Brincos · Bijuteria | Consulte o valor |
+| Anel Marquise Verde | Anéis | Consulte o valor |
+| Pulseira Flores Verdes | Pulseiras | Consulte o valor |
+| Brinco Oval Verde | Brincos | Consulte o valor |
+| Trio de Anéis Olho de Tigre | Anéis | Consulte o valor |
+| Braceletes Quadrados e Argolinhas | Braceletes | Consulte o valor |
+| Anéis Mosaico Coloridos | Anéis | Consulte o valor |
+| Conjunto Verde: Anéis e Pulseira | Anéis | Consulte o valor |
+| Anéis Vermelho e Rosa | Anéis | Consulte o valor |
+| Conjunto Vermelho: Brincos e Pulseira | Brincos | Consulte o valor |
+| Brinco Quadrado Azul | Brincos | Consulte o valor |
 
 > ⚠️ **Os preços das 8 primeiras peças foram estimados**, já que não foram informados pela Renata Anoana. Confirme os valores reais antes de divulgar o site.
 
-**Bijuterias e "Consulte o valor":** no painel, a caixa "Bijuteria" mostra uma etiqueta no canto da foto. Se o preço ficar em branco, o card mostra "Consulte o valor", e o botão "Consultar valor" abre o WhatsApp perguntando valor e disponibilidade da peça. Quando o catálogo do painel já estava salvo no navegador, as peças novas do catálogo original entram uma única vez; se forem removidas, não voltam.
+**Material:** cada card mostra o material abaixo do nome da peça. O padrão é "Prata Turca"; estão em "Prata 925" o Brinco Gota Turquesa, o Bracelete Prata Lisa, o Trio de Anéis Olho de Tigre, os Braceletes Quadrados e Argolinhas e o Brinco Quadrado Azul. No painel, escolha o material no campo "Material" do formulário (as opções ficam em `MATERIALS`, no `admin.html`). No `index.html`, o texto fica em cada `<p class="material">`.
+
+As 10 últimas peças da tabela são bijuterias. **"Consulte o valor":** no painel, se o preço ficar em branco, o card mostra "Consulte o valor", e o botão "Consultar valor" abre o WhatsApp perguntando valor e disponibilidade da peça. Quando o catálogo do painel já estava salvo no navegador, as peças novas do catálogo original entram uma única vez; se forem removidas, não voltam.
 
 ## Identidade visual
 
