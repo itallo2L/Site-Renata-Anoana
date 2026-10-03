@@ -22,27 +22,27 @@ Prévia publicada (para enviar o link sem precisar do arquivo): https://claude.a
 
 ## Estrutura do catálogo
 
-O site trabalha com 6 categorias: Colares, Anéis, Pulseiras, Braceletes, Brincos e Pingentes. Os filtros só aparecem para categorias que têm pelo menos um produto.
+O site trabalha com 7 categorias: Colares, Anéis, Pulseiras, Braceletes, Brincos, Conjuntos e Pingentes. Os filtros só aparecem para categorias que têm pelo menos um produto.
 
 | Produto | Categoria | Preço |
 |---|---|---|
-| Conjunto Coral Vermelho | Anéis | R$ 379,90 |
+| Conjunto Coral Vermelho | Conjuntos | R$ 379,90 |
 | Colar Cristais Azuis e Madrepérola | Colares | R$ 259,90 |
 | Anel Rosa Vermelha | Anéis | R$ 179,90 |
-| Conjunto Esmeralda Vintage | Anéis | R$ 459,90 |
-| Conjunto Rubi Vintage | Anéis | R$ 429,90 |
+| Conjunto Esmeralda Vintage | Conjuntos | R$ 459,90 |
+| Conjunto Rubi Vintage | Conjuntos | R$ 429,90 |
 | Brinco Gota Turquesa | Brincos | R$ 189,90 |
 | Bracelete Prata Lisa | Braceletes | R$ 219,90 |
-| Conjunto Pedra Verde | Anéis | R$ 329,90 |
+| Conjunto Pedra Verde | Conjuntos | R$ 329,90 |
 | Anel Marquise Verde | Anéis | Consulte o valor |
 | Pulseira Flores Verdes | Pulseiras | R$ 299,90 |
 | Brinco Oval Verde | Brincos | Consulte o valor |
 | Trio de Anéis Olho de Tigre | Anéis | Consulte o valor |
 | Braceletes Quadrados e Argolinhas | Braceletes | R$ 179,90 |
 | Anéis Prata Turca com Zircônias Coloridas | Anéis | R$ 185,90 |
-| Conjunto Verde: Anéis e Pulseira | Anéis | Consulte o valor |
+| Conjunto Verde: Anéis e Pulseira | Conjuntos | Consulte o valor |
 | Anéis Vermelho e Rosa | Anéis | Consulte o valor |
-| Conjunto Vermelho: Brincos e Pulseira | Brincos | Consulte o valor |
+| Conjunto Vermelho: Brincos e Pulseira | Conjuntos | Consulte o valor |
 | Brinco Topázio Azul | Brincos | R$ 279,90 |
 
 > ⚠️ **Os preços das 8 primeiras peças foram estimados**, já que não foram informados pela Renata Anoana. Confirme os valores reais antes de divulgar o site.
