@@ -326,7 +326,6 @@
   /* ---------- catálogo ---------- */
   .section{padding-block:64px 72px;}
   .section-head{text-align:center;margin-bottom:28px;}
-  .section-head .eyebrow::after{content:"";width:28px;height:1px;background:var(--rose-gold);flex:none;}
   .section-title{
     font-size:clamp(2rem,4.6vw,2.7rem);
     line-height:1.1;
@@ -346,7 +345,7 @@
   }
   .filters::-webkit-scrollbar{display:none;}
   .filters .pill:first-child{margin-left:auto;}
-  .filters .pill:last-child{margin-right:auto;}
+  .filters button.pill:last-of-type{margin-right:auto;}
   .pill{
     flex:none;
     border:1px solid var(--border);
@@ -370,7 +369,7 @@
      no mesmo estilo do "Catálogo" (criado pelo script) */
   .filter-current{display:none;}
   @media (max-width:899px){
-    .filters button.pill,.section-head .divider,.section-head .eyebrow{display:none;}
+    .filters button.pill,.section-head .divider{display:none;}
     .filter-current{display:inline-flex;margin:0 auto;}
     .filter-current::after{content:"";width:28px;height:1px;background:var(--rose-gold);flex:none;}
   }
@@ -594,8 +593,7 @@
   <section class="section" id="catalogo" aria-labelledby="catalogo-title">
     <div class="wrap">
       <header class="section-head">
-        <p class="eyebrow">Catálogo</p>
-        <h2 class="section-title" id="catalogo-title">Nossas <em>peças</em></h2>
+        <h2 class="section-title" id="catalogo-title">Catálogo</h2>
         <p class="section-sub">Peças selecionadas e exclusivas, para você se sentir única todos os dias.</p>
         <span class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/></svg></span>
       </header>
