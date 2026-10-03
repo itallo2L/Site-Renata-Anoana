@@ -223,7 +223,10 @@
     z-index:1;
     padding-block:48px 32px;
   }
-  .hero-content{max-width:520px;}
+  /* o bloco tem a largura da frase mais longa, para o botão ficar centralizado
+     em relação ao texto; o título não alarga o bloco, só ocupa a largura dele */
+  .hero-content{max-width:520px;width:fit-content;}
+  .hero h1{width:0;min-width:100%;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:10px;
     margin:0;
@@ -253,7 +256,13 @@
   }
   .hero-ship{display:flex;align-items:center;gap:8px;margin-top:10px;}
   .hero-ship svg{width:20px;height:20px;color:var(--text-title);}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;}
+  .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px;}
+  /* celular e tablet: textos e botão do início centralizados */
+  @media (max-width:899px){
+    .hero-content{margin-inline:auto;text-align:center;}
+    .hero-text{margin-inline:auto;}
+    .hero-ship{justify-content:center;}
+  }
 
   /* foto de destaque: faixa larga no celular, lado direito inteiro no desktop,
      desbotando para o fundo da página nas bordas */
