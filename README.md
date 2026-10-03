@@ -27,27 +27,27 @@ O site trabalha com 6 categorias: Colares, Anéis, Pulseiras, Braceletes, Brinco
 | Produto | Categoria | Preço |
 |---|---|---|
 | Conjunto Coral Vermelho | Anéis | R$ 379,90 |
-| Colar Lua de Turquesa | Colares | R$ 259,90 |
+| Colar Cristais Azuis e Madrepérola | Colares | R$ 259,90 |
 | Anel Rosa Vermelha | Anéis | R$ 179,90 |
 | Conjunto Esmeralda Vintage | Anéis | R$ 459,90 |
 | Conjunto Rubi Vintage | Anéis | R$ 429,90 |
-| Brinco Gota Turquesa | Brincos | R$ 169,90 |
+| Brinco Gota Turquesa | Brincos | R$ 189,90 |
 | Bracelete Prata Lisa | Braceletes | R$ 219,90 |
 | Conjunto Pedra Verde | Anéis | R$ 329,90 |
 | Anel Marquise Verde | Anéis | Consulte o valor |
-| Pulseira Flores Verdes | Pulseiras | Consulte o valor |
+| Pulseira Flores Verdes | Pulseiras | R$ 299,90 |
 | Brinco Oval Verde | Brincos | Consulte o valor |
 | Trio de Anéis Olho de Tigre | Anéis | Consulte o valor |
-| Braceletes Quadrados e Argolinhas | Braceletes | Consulte o valor |
-| Anéis Mosaico Coloridos | Anéis | Consulte o valor |
+| Braceletes Quadrados e Argolinhas | Braceletes | R$ 179,90 |
+| Anéis Prata Turca com Zircônias Coloridas | Anéis | R$ 185,90 |
 | Conjunto Verde: Anéis e Pulseira | Anéis | Consulte o valor |
 | Anéis Vermelho e Rosa | Anéis | Consulte o valor |
 | Conjunto Vermelho: Brincos e Pulseira | Brincos | Consulte o valor |
-| Brinco Quadrado Azul | Brincos | Consulte o valor |
+| Brinco Topázio Azul | Brincos | R$ 279,90 |
 
 > ⚠️ **Os preços das 8 primeiras peças foram estimados**, já que não foram informados pela Renata Anoana. Confirme os valores reais antes de divulgar o site.
 
-**Material:** cada card mostra o material abaixo do nome da peça. O padrão é "Prata Turca"; estão em "Prata 925" o Brinco Gota Turquesa, o Bracelete Prata Lisa, o Trio de Anéis Olho de Tigre, os Braceletes Quadrados e Argolinhas e o Brinco Quadrado Azul. No painel, escolha o material no campo "Material" do formulário (as opções ficam em `MATERIALS`, no `admin.html`). No `index.html`, o texto fica em cada `<p class="material">`.
+**Material:** cada card mostra o material abaixo do nome da peça. O padrão é "Prata Turca"; estão em "Prata 925" o Conjunto Coral Vermelho, o Conjunto Pedra Verde, o Brinco Gota Turquesa, o Bracelete Prata Lisa, o Trio de Anéis Olho de Tigre, os Braceletes Quadrados e Argolinhas e o Brinco Topázio Azul. No painel, escolha o material no campo "Material" do formulário (as opções ficam em `MATERIALS`, no `admin.html`). No `index.html`, o texto fica em cada `<p class="material">`. Os filtros do catálogo (e o menu do celular) também têm "Prata 925" e "Prata Turca", no fim da lista de categorias: eles mostram as peças pelo texto do material de cada card. No painel, o site exportado ganha um filtro para cada material de `MATERIALS`.
 
 As 10 últimas peças da tabela são bijuterias. **"Consulte o valor":** no painel, se o preço ficar em branco, o card mostra "Consulte o valor", e o botão "Consultar valor" abre o WhatsApp perguntando valor e disponibilidade da peça. Quando o catálogo do painel já estava salvo no navegador, as peças novas do catálogo original entram uma única vez; se forem removidas, não voltam.
 
