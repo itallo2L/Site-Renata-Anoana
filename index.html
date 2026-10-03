@@ -248,7 +248,7 @@
   .hero-inner{
     position:relative;
     z-index:1;
-    padding-block:48px 32px;
+    padding-block:20px 32px;
   }
   /* o bloco tem a largura da frase mais longa, para o botão ficar centralizado
      em relação ao texto; o título não alarga o bloco, só ocupa a largura dele */
@@ -295,6 +295,13 @@
      desbotando para o fundo da página nas bordas */
   .hero-media{position:relative;width:100%;aspect-ratio:4/3;max-height:460px;}
   .hero-media img{width:100%;height:100%;object-fit:cover;object-position:60% 55%;display:block;}
+  /* celular/tablet em pé: texto + foto cabem na primeira tela (altura da tela menos o cabeçalho);
+     a foto encolhe para caber, sem passar do tamanho normal nem ficar menor que 200px */
+  @media (max-width:899px) and (min-height:600px){
+    .hero{display:flex;flex-direction:column;max-height:calc(100svh - 73px);}
+    .hero-inner{flex:none;}
+    .hero-media{flex:0 1 auto;min-height:200px;}
+  }
   .hero-media::after{
     content:"";
     position:absolute;inset:-2px;
