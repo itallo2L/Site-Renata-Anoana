@@ -838,5 +838,175 @@
     "price": 300.0,
     "image": "images/produtos/r66.jpg",
     "size": "Nº 13 e Nº 12"
+  },
+  {
+    "id": "e01",
+    "title": "Brinco em Prata 925 com Ametista Natural em formato gota facetada e detalhe de coroa rendada (pedra maior)",
+    "description": "Luxo discreto.",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e01.jpg",
+    "size": null
+  },
+  {
+    "id": "e02",
+    "title": "Brinco em Prata 925 com Ametista Natural em formato gota facetada e detalhe de coroa rendada (pedra menor)",
+    "description": "Luxo discreto.",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 120.0,
+    "image": "images/produtos/e02.jpg",
+    "size": null
+  },
+  {
+    "id": "e03",
+    "title": "Brinco Pendente Ametista Natural Esfera Facetada em Prata 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 90.0,
+    "image": "images/produtos/e03.jpg",
+    "size": null
+  },
+  {
+    "id": "e04",
+    "title": "Brinco Ponto de Luz Jade Natural Verde em Prata 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 50.0,
+    "image": "images/produtos/e04.jpg",
+    "size": null
+  },
+  {
+    "id": "e05",
+    "title": "Brinco ponto de luz em Ametista Natural roxa com detalhe de coroa",
+    "description": "Delicado, sofisticado e prata 925",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 100.0,
+    "image": "images/produtos/e05.jpg",
+    "size": null
+  },
+  {
+    "id": "e06",
+    "title": "Brinco Ponto de Luz Bola de Fogo Granada Natural Vermelha, prata 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 45.0,
+    "image": "images/produtos/e06.jpg",
+    "size": null
+  },
+  {
+    "id": "e07",
+    "title": "Brinco Ponto de Luz Ônix Preto Natural em Prata 925 - 10mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 45.0,
+    "image": "images/produtos/e07.jpg",
+    "size": null
+  },
+  {
+    "id": "e08",
+    "title": "Brinco Ponto de Luz Ágata Vermelha Natural em Prata 925 - 10mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 45.0,
+    "image": "images/produtos/e08.jpg",
+    "size": null
+  },
+  {
+    "id": "e09",
+    "title": "Brinco Pendente Ágata Vermelha Facetada em Prata 925 - 12mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 100.0,
+    "image": "images/produtos/e09.jpg",
+    "size": null
+  },
+  {
+    "id": "e10",
+    "title": "Brinco Pendente Ágata Verde Natural em Prata 925 - 12mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 100.0,
+    "image": "images/produtos/e10.jpg",
+    "size": null
+  },
+  {
+    "id": "e11",
+    "title": "Brinco gancho longo em Prata 925 com Turquesa Natural 12mm",
+    "description": "Modelo boho chic, leve e super estiloso!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 250.0,
+    "image": "images/produtos/e11.jpg",
+    "size": null
+  },
+  {
+    "id": "e12",
+    "title": "Brinco pendente em Prata 925 com Olho de Tigre Natural 14mm",
+    "description": "Pedra com brilho que se movimenta, super sofisticado!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e12.jpg",
+    "size": null
+  },
+  {
+    "id": "e13",
+    "title": "Brinco pendente longo em Prata 925 com Ágata Verde Escura Natural 12mm",
+    "description": "Sofisticado, elegante e atemporal!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e13.jpg",
+    "size": null
+  },
+  {
+    "id": "e14",
+    "title": "Brinco pendente longo em Prata 925 com Olho de Tigre Natural facetado 10mm",
+    "description": "Muito mais brilho e sofisticação!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e14.jpg",
+    "size": null
+  },
+  {
+    "id": "e15",
+    "title": "Brinco pendente longo em Prata 925 com Quartzo Fumê Natural facetado 12mm",
+    "description": "Sofisticado, neutro e combina com tudo!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e15.jpg",
+    "size": null
+  },
+  {
+    "id": "e16",
+    "title": "Brinco longo curvo em Prata 925 com Ametista Natural 10mm",
+    "description": "Modelo minimalista, moderno e super elegante!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e16.jpg",
+    "size": null
+  },
+  {
+    "id": "e17",
+    "title": "Brinco pendente longo em Prata 925 com Ônix Preto Natural facetado 12mm",
+    "description": "Clássico, poderoso e super elegante!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e17.jpg",
+    "size": null
   }
 ]
