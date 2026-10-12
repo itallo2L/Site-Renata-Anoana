@@ -341,6 +341,10 @@
     <p>Adicione, edite ou remova peças. Quando terminar, baixe o site atualizado já pronto para publicar no GitHub Pages.</p>
   </section>
 
+  <div style="background:#FFF3CD;border:1px solid #E8C468;color:#6B5200;border-radius:8px;padding:14px 18px;margin:0 0 20px;font-size:14px;line-height:1.5;">
+    <strong>⚠ Painel temporariamente desatualizado:</strong> o site foi migrado pra um formato novo (catálogo em <code>products.json</code>) e esse painel ainda não foi atualizado pra ele. Os botões <strong>"Baixar site atualizado"</strong> e <strong>"Restaurar catálogo original"</strong> estão desativados por enquanto pra não apagar os produtos novos (inclusive os 66 anéis adicionados). Fale com o Itallo antes de usá-los de novo.
+  </div>
+
   <div class="toolbar">
     <button class="btn solid" id="btn-new" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -350,13 +354,13 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
       <span class="full">Pré-visualizar site</span>
     </button>
-    <button class="btn gold" id="btn-export" type="button">
+    <button class="btn gold" id="btn-export" type="button" disabled title="Desativado temporariamente: o site foi migrado para products.json. Fale com o Itallo antes de reativar.">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
       <span class="full">Baixar site atualizado</span>
     </button>
     <div class="spacer"></div>
     <button class="btn ghost" id="btn-categories" type="button">Categorias</button>
-    <button class="btn ghost" id="btn-reset" type="button">Restaurar catálogo original</button>
+    <button class="btn ghost" id="btn-reset" type="button" disabled title="Desativado temporariamente: voltaria ao catálogo antigo (sem os 66 anéis novos). Fale com o Itallo antes de reativar.">Restaurar catálogo original</button>
   </div>
 
   <nav class="filters" id="filters" aria-label="Filtrar por categoria"></nav>
