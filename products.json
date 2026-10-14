@@ -928,5 +928,225 @@
     "price": 150.0,
     "image": "images/produtos/e17.jpg",
     "size": null
+  },
+  {
+    "id": "w01",
+    "title": "Argolinha Coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 35.0,
+    "image": "images/produtos/w01.jpg",
+    "size": null
+  },
+  {
+    "id": "w02",
+    "title": "Argolinha Cravejada de Zircônia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 160.0,
+    "image": "images/produtos/w02.jpg",
+    "size": null
+  },
+  {
+    "id": "w03",
+    "title": "Argola Redonda",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 50.0,
+    "image": "images/produtos/w03.jpg",
+    "size": null
+  },
+  {
+    "id": "w04",
+    "title": "Argola 3 Fios",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 80.0,
+    "image": "images/produtos/w04.jpg",
+    "size": null
+  },
+  {
+    "id": "w05",
+    "title": "Argola Lisa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 80.0,
+    "image": "images/produtos/w05.jpg",
+    "size": null
+  },
+  {
+    "id": "w06",
+    "title": "Argola Lisa G",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/w06.jpg",
+    "size": null
+  },
+  {
+    "id": "w07",
+    "title": "Argola G Fina",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 60.0,
+    "image": "images/produtos/w07.jpg",
+    "size": null
+  },
+  {
+    "id": "w08",
+    "title": "Argola Trançada",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 60.0,
+    "image": "images/produtos/w08.jpg",
+    "size": null
+  },
+  {
+    "id": "w09",
+    "title": "Argola Gota",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 80.0,
+    "image": "images/produtos/w09.jpg",
+    "size": null
+  },
+  {
+    "id": "w10",
+    "title": "Argola Formato Gota",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 39.9,
+    "image": "images/produtos/w10.jpg",
+    "size": null
+  },
+  {
+    "id": "w11",
+    "title": "Pulseira 3 Fios",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 350.0,
+    "image": "images/produtos/w11.jpg",
+    "size": null
+  },
+  {
+    "id": "w12",
+    "title": "Pulseira Flores Prata Envelhecida",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 800.0,
+    "image": "images/produtos/w12.jpg",
+    "size": null
+  },
+  {
+    "id": "w13",
+    "title": "Bracelete Borboleta",
+    "description": "",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 500.0,
+    "image": "images/produtos/w13.jpg",
+    "size": null
+  },
+  {
+    "id": "w14",
+    "title": "Bracelete Arabescos",
+    "description": "",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 550.0,
+    "image": "images/produtos/w14.jpg",
+    "size": null
+  },
+  {
+    "id": "w15",
+    "title": "Pulseira Bola Shamballa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 110.0,
+    "image": "images/produtos/w15.jpg",
+    "size": null
+  },
+  {
+    "id": "w16",
+    "title": "Pulseira Margarida Esmaltada",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 90.0,
+    "image": "images/produtos/w16.jpg",
+    "size": null
+  },
+  {
+    "id": "w17",
+    "title": "Pulseira Masculina Elo Figaro",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 350.0,
+    "image": "images/produtos/w17.jpg",
+    "size": null
+  },
+  {
+    "id": "w18",
+    "title": "Pulseira Masculina Elo Grumet",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 580.0,
+    "image": "images/produtos/w18.jpg",
+    "size": null
+  },
+  {
+    "id": "w19",
+    "title": "Pulseira Masculina Elo Cartier",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 1000.0,
+    "image": "images/produtos/w19.jpg",
+    "size": null
+  },
+  {
+    "id": "w20",
+    "title": "Pulseira Pandora",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 290.0,
+    "image": "images/produtos/w20.jpg",
+    "size": null
+  },
+  {
+    "id": "w21",
+    "title": "Bracelete Prata Liso",
+    "description": "",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 150.0,
+    "image": "images/produtos/w21.jpg",
+    "size": null
+  },
+  {
+    "id": "w22",
+    "title": "Par de Braceletes Lisos",
+    "description": "Valor por unidade.",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 250.0,
+    "image": "images/produtos/w22.jpg",
+    "size": null
   }
 ]
