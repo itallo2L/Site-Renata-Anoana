@@ -1,55 +1,5 @@
 [
   {
-    "id": "p1",
-    "title": "Conjunto Coral Vermelho",
-    "description": "",
-    "material": "Prata 925",
-    "category": "conjuntos",
-    "price": 379.9,
-    "image": "images/produtos/p1.jpg",
-    "size": null
-  },
-  {
-    "id": "p2",
-    "title": "Colar Cristais Azuis e Madrepérola",
-    "description": "",
-    "material": "Prata Turca",
-    "category": "colares",
-    "price": 259.9,
-    "image": "images/produtos/p2.jpg",
-    "size": null
-  },
-  {
-    "id": "p3",
-    "title": "Anel Rosa Vermelha",
-    "description": "",
-    "material": "Prata Turca",
-    "category": "aneis",
-    "price": 179.9,
-    "image": "images/produtos/p3.jpg",
-    "size": null
-  },
-  {
-    "id": "p4",
-    "title": "Conjunto Esmeralda Vintage",
-    "description": "",
-    "material": "Prata Turca",
-    "category": "conjuntos",
-    "price": 459.9,
-    "image": "images/produtos/p4.jpg",
-    "size": null
-  },
-  {
-    "id": "p5",
-    "title": "Conjunto Rubi Vintage",
-    "description": "",
-    "material": "Prata Turca",
-    "category": "conjuntos",
-    "price": 429.9,
-    "image": "images/produtos/p5.jpg",
-    "size": null
-  },
-  {
     "id": "p6",
     "title": "Brinco Gota Turquesa",
     "description": "",
@@ -70,16 +20,6 @@
     "size": null
   },
   {
-    "id": "p8",
-    "title": "Conjunto Pedra Verde",
-    "description": "",
-    "material": "Prata 925",
-    "category": "conjuntos",
-    "price": 329.9,
-    "image": "images/produtos/p8.jpg",
-    "size": null
-  },
-  {
     "id": "b1",
     "title": "Anel Marquise Verde",
     "description": "",
@@ -87,16 +27,6 @@
     "category": "aneis",
     "price": null,
     "image": "images/produtos/b1.jpg",
-    "size": null
-  },
-  {
-    "id": "b2",
-    "title": "Pulseira Flores Verdes",
-    "description": "",
-    "material": "Prata Turca",
-    "category": "pulseiras",
-    "price": 299.9,
-    "image": "images/produtos/b2.jpg",
     "size": null
   },
   {
@@ -117,16 +47,6 @@
     "category": "aneis",
     "price": null,
     "image": "images/produtos/b4.jpg",
-    "size": null
-  },
-  {
-    "id": "b5",
-    "title": "Braceletes Quadrados e Argolinhas",
-    "description": "",
-    "material": "Prata 925",
-    "category": "braceletes",
-    "price": 179.9,
-    "image": "images/produtos/b5.jpg",
     "size": null
   },
   {
