@@ -67,9 +67,29 @@ Abra o `index.html` em qualquer editor de texto (Bloco de Notas, VS Code etc.).
 - **Foto de destaque do início:** fica no bloco `hero-media` (`data:image/jpeg;base64,...`) e é fixa, ou seja, não depende do catálogo. Para trocar, substitua o base64 no `index.html` **e** no `SITE_TEMPLATE` do `admin.html`. Use uma foto horizontal com a peça mais para a direita, porque o lado esquerdo da imagem desbota para o fundo.
 - **Adicionar um produto novo:** copie um bloco `<article class="card" ...> ... </article>` inteiro, cole antes do `</div>` que fecha `<div class="grid" id="grid">`, e ajuste categoria, título, preço, link e foto.
 
-## Painel (`admin.html`) e exportação
+## Painel (`admin.html`)
 
-O botão "Baixar site atualizado" do painel gera um `index.html` completo a partir do `SITE_TEMPLATE` (dentro do `admin.html`), preenchendo logo, favicon, filtros e cards (a foto de destaque do início já vem fixa no template). **Se mudar a estrutura, o CSS ou os textos fixos do `index.html`, mude também o `SITE_TEMPLATE`** — senão a próxima exportação desfaz a mudança.
+O painel foi reescrito: agora é tela de login + CRUD de produtos que fala com um backend em `/api` (funções serverless). Não existe mais `SITE_TEMPLATE` nem exportação manual — ao salvar um produto no painel, o backend já grava a alteração direto no `products.json` do repositório (e na imagem, se houver) via API do GitHub. O site (`index.html`) lê o `products.json` normalmente, então a próxima publicação já reflete a mudança.
+
+### Backend (`/api`) e deploy na Vercel
+
+Como o catálogo é um JSON versionado no git, não há banco de dados: o backend autentica a Renata e usa a API do GitHub para commitar as mudanças em `products.json` (e em `images/produtos/`) neste mesmo repositório.
+
+- `api/login.js`, `api/logout.js`, `api/session.js` — autenticação por senha única, sessão em cookie `httpOnly` assinado (sem biblioteca de JWT, HMAC simples em `api/_lib/auth.js`).
+- `api/products.js` — CRUD (`GET`/`POST`/`PUT`/`DELETE`), protegido por sessão.
+- `api/_lib/github.js` — leitura/escrita de arquivos no repositório via GitHub Contents API.
+
+Passos para publicar:
+
+1. Importar este repositório na Vercel (framework "Other", sem build command — é site estático + `/api`).
+2. Configurar as variáveis de ambiente do projeto na Vercel (veja `.env.example`):
+   - `ADMIN_PASSWORD_HASH` — hash bcrypt da senha da Renata.
+   - `SESSION_SECRET` — string aleatória longa.
+   - `GITHUB_TOKEN` — Personal Access Token (fine-grained) com permissão de escrita em "Contents" **apenas neste repositório**.
+   - `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`.
+3. Apontar o domínio `renataanoana.com.br` (hoje no GitHub Pages, via `CNAME`) para a Vercel.
+
+Cada alteração salva no painel gera um commit automático no repositório (autor "Painel Renata Anoana"), então o histórico de mudanças do catálogo fica no `git log` normalmente.
 
 ## Observações
 
