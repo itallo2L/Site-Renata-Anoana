@@ -1,0 +1,9 @@
+{
+  "name": "site-renata-anoana",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Site e painel administrativo da Renata Anoana",
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  }
+}
