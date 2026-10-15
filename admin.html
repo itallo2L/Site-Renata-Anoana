@@ -201,6 +201,14 @@
 
 <script>
 (function () {
+  var API_BASE = (function () {
+    var host = window.location.hostname;
+    if (host === 'renataanoana.com.br' || host === 'www.renataanoana.com.br') {
+      return 'https://api.renataanoana.com.br';
+    }
+    return ''; // mesmo domínio (dev local, previews etc.)
+  })();
+
   var state = { products: [], editingId: null };
 
   var loginView = document.getElementById('login-view');
@@ -234,7 +242,8 @@
   }
 
   async function api(path, options) {
-    var res = await fetch(path, Object.assign({
+    var res = await fetch(API_BASE + path, Object.assign({
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
     }, options || {}));
     var data = null;

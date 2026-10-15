@@ -75,19 +75,23 @@ O painel foi reescrito: agora é tela de login + CRUD de produtos que fala com u
 
 Como o catálogo é um JSON versionado no git, não há banco de dados: o backend autentica a Renata e usa a API do GitHub para commitar as mudanças em `products.json` (e em `images/produtos/`) neste mesmo repositório.
 
+O site estático (`index.html`, `admin.html`) continua no **GitHub Pages**, em `renataanoana.com.br` — só o backend (`/api`) roda na **Vercel**, no subdomínio `api.renataanoana.com.br`. Isso evita colocar a vitrine comercial no plano gratuito da Vercel (cujos termos restringem o Hobby a uso não-comercial) e mantém o GitHub Pages, que não tem essa restrição, cuidando do que já funciona.
+
 - `api/login.js`, `api/logout.js`, `api/session.js` — autenticação por senha única, sessão em cookie `httpOnly` assinado (sem biblioteca de JWT, HMAC simples em `api/_lib/auth.js`).
 - `api/products.js` — CRUD (`GET`/`POST`/`PUT`/`DELETE`), protegido por sessão.
 - `api/_lib/github.js` — leitura/escrita de arquivos no repositório via GitHub Contents API.
+- `api/_lib/cors.js` — libera CORS (com credenciais) só para as origens em `ALLOWED_ORIGINS`, já que front e API ficam em domínios diferentes.
 
 Passos para publicar:
 
-1. Importar este repositório na Vercel (framework "Other", sem build command — é site estático + `/api`).
+1. Importar este repositório na Vercel (framework "Other", sem build command — o deploy da Vercel serve só o `/api`; o `index.html`/`admin.html` publicados por ela não são usados, quem serve o site é o GitHub Pages).
 2. Configurar as variáveis de ambiente do projeto na Vercel (veja `.env.example`):
    - `ADMIN_PASSWORD_HASH` — hash bcrypt da senha da Renata.
    - `SESSION_SECRET` — string aleatória longa.
    - `GITHUB_TOKEN` — Personal Access Token (fine-grained) com permissão de escrita em "Contents" **apenas neste repositório**.
    - `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`.
-3. Apontar o domínio `renataanoana.com.br` (hoje no GitHub Pages, via `CNAME`) para a Vercel.
+   - `ALLOWED_ORIGINS` — `https://renataanoana.com.br,https://www.renataanoana.com.br` (origens do GitHub Pages autorizadas a chamar a API).
+3. Em **Settings → Domains** do projeto na Vercel, adicionar `api.renataanoana.com.br` (não o domínio raiz — esse continua no GitHub Pages). Criar no registrador do domínio um registro `CNAME` para o host `api` apontando para o valor que a Vercel indicar (ex.: `cname.vercel-dns.com`), sem mexer nos registros do domínio raiz nem do `www`.
 
 Cada alteração salva no painel gera um commit automático no repositório (autor "Painel Renata Anoana"), então o histórico de mudanças do catálogo fica no `git log` normalmente.
 

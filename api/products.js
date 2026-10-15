@@ -1,5 +1,6 @@
 const { isAuthenticated } = require('./_lib/auth');
 const { getFile, putFile } = require('./_lib/github');
+const { applyCors, handlePreflight } = require('./_lib/cors');
 
 const PRODUCTS_PATH = 'products.json';
 
@@ -45,6 +46,9 @@ function normalizePrice(value, fallback) {
 }
 
 module.exports = async (req, res) => {
+  applyCors(req, res);
+  if (handlePreflight(req, res)) return;
+
   if (!isAuthenticated(req)) {
     return res.status(401).json({ error: 'Não autenticado' });
   }
