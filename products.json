@@ -1,0 +1,1142 @@
+[
+  {
+    "id": "p6",
+    "title": "Brinco Gota Turquesa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 189.9,
+    "image": "images/produtos/p6.jpg",
+    "size": null
+  },
+  {
+    "id": "b1",
+    "title": "Anel Marquise Verde",
+    "description": "",
+    "material": "Prata Turca",
+    "category": "aneis",
+    "price": null,
+    "image": "images/produtos/b1.jpg",
+    "size": null
+  },
+  {
+    "id": "b3",
+    "title": "Brinco Oval Verde",
+    "description": "",
+    "material": "Prata Turca",
+    "category": "brincos",
+    "price": null,
+    "image": "images/produtos/b3.jpg",
+    "size": null
+  },
+  {
+    "id": "b4",
+    "title": "Trio de Anéis Olho de Tigre",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": null,
+    "image": "images/produtos/b4.jpg",
+    "size": null
+  },
+  {
+    "id": "b6",
+    "title": "Anéis Prata Turca com Zircônias Coloridas",
+    "description": "",
+    "material": "Prata Turca",
+    "category": "aneis",
+    "price": 185.9,
+    "image": "images/produtos/b6.jpg",
+    "size": null
+  },
+  {
+    "id": "b7",
+    "title": "Conjunto Verde: Anéis e Pulseira",
+    "description": "",
+    "material": "Prata Turca",
+    "category": "conjuntos",
+    "price": null,
+    "image": "images/produtos/b7.jpg",
+    "size": null
+  },
+  {
+    "id": "b8",
+    "title": "Anéis Vermelho e Rosa",
+    "description": "",
+    "material": "Prata Turca",
+    "category": "aneis",
+    "price": null,
+    "image": "images/produtos/b8.jpg",
+    "size": null
+  },
+  {
+    "id": "b9",
+    "title": "Conjunto Vermelho: Brincos e Pulseira",
+    "description": "",
+    "material": "Prata Turca",
+    "category": "conjuntos",
+    "price": null,
+    "image": "images/produtos/b9.jpg",
+    "size": null
+  },
+  {
+    "id": "b10",
+    "title": "Brinco Topázio Azul",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 279.9,
+    "image": "images/produtos/b10.jpg",
+    "size": null
+  },
+  {
+    "id": "r01",
+    "title": "Anel borboleta",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r01.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r02",
+    "title": "Anel trançado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r02.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r03",
+    "title": "Anel estrelinha cravejado com mini zircônia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r03.jpg",
+    "size": "Nº 16"
+  },
+  {
+    "id": "r04",
+    "title": "Anel coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r04.jpg",
+    "size": "Nº 14 e Nº 19"
+  },
+  {
+    "id": "r05",
+    "title": "Anel formato de coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r05.jpg",
+    "size": "Nº 15"
+  },
+  {
+    "id": "r06",
+    "title": "Anel Pandora",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r06.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r07",
+    "title": "Anel quadrado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r07.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r08",
+    "title": "Anel vazado de coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r08.jpg",
+    "size": "Nº 16"
+  },
+  {
+    "id": "r09",
+    "title": "Anel cravejado zircônia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r09.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r10",
+    "title": "Anel infinito de coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r10.jpg",
+    "size": "Nº 18"
+  },
+  {
+    "id": "r11",
+    "title": "Anel coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 100.0,
+    "image": "images/produtos/r11.jpg",
+    "size": "Nº 21"
+  },
+  {
+    "id": "r12",
+    "title": "Anel gota azul",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r12.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r13",
+    "title": "Anel solitário",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r13.jpg",
+    "size": "Nº 18"
+  },
+  {
+    "id": "r14",
+    "title": "Anel solitário formato em flor",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r14.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r15",
+    "title": "Anel Solitário",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 89.9,
+    "image": "images/produtos/r15.jpg",
+    "size": "Nº 14 e Nº 15 e Nº 17"
+  },
+  {
+    "id": "r16",
+    "title": "Anel solitário cravejado nas laterais",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 139.9,
+    "image": "images/produtos/r16.jpg",
+    "size": "Nº 13 e Nº 14"
+  },
+  {
+    "id": "r17",
+    "title": "Anel solitário quadrado zircônia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 129.9,
+    "image": "images/produtos/r17.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r18",
+    "title": "Anel solitário cravejado nas laterais",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 129.99,
+    "image": "images/produtos/r18.jpg",
+    "size": "Nº 13"
+  },
+  {
+    "id": "r19",
+    "title": "Citrino princesa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 240.9,
+    "image": "images/produtos/r19.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r20",
+    "title": "Anel solitário infinito pera 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 89.9,
+    "image": "images/produtos/r20.jpg",
+    "size": "Nº 14 e Nº 15"
+  },
+  {
+    "id": "r21",
+    "title": "Anel solitário azul",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 119.9,
+    "image": "images/produtos/r21.jpg",
+    "size": "Nº 18"
+  },
+  {
+    "id": "r22",
+    "title": "Anel com zircônia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 149.9,
+    "image": "images/produtos/r22.jpg",
+    "size": "Nº 13"
+  },
+  {
+    "id": "r23",
+    "title": "Anel Zircônia azul",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 149.9,
+    "image": "images/produtos/r23.jpg",
+    "size": "Nº 16"
+  },
+  {
+    "id": "r24",
+    "title": "Anel oval coral vermelho com marcassitas",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r24.jpg",
+    "size": "Nº 21"
+  },
+  {
+    "id": "r25",
+    "title": "Anel turmalina Paraíba",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 270.0,
+    "image": "images/produtos/r25.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r26",
+    "title": "Anel Filigrana Retangular - Topázio London Blue",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 189.9,
+    "image": "images/produtos/r26.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r27",
+    "title": "Anel coração - Topázio Rosa Pink / Rubelita",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 95.0,
+    "image": "images/produtos/r27.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r28",
+    "title": "Anel Solitário Clássico - com Zircônia Central e Aro Cravejado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 180.0,
+    "image": "images/produtos/r28.jpg",
+    "size": "Nº 14"
+  },
+  {
+    "id": "r29",
+    "title": "Anel Retangular - Pedra Esmeralda Verde",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 189.9,
+    "image": "images/produtos/r29.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r30",
+    "title": "Anel Flor Pérola Shell - com Halo de Zircônias Gota",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 300.0,
+    "image": "images/produtos/r30.jpg",
+    "size": "Nº 23"
+  },
+  {
+    "id": "r31",
+    "title": "Anel Navete Rubelita - Rubi Rosa com Laterais em Navete Cristal",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 250.0,
+    "image": "images/produtos/r31.jpg",
+    "size": "Nº 20"
+  },
+  {
+    "id": "r32",
+    "title": "Anel Retangular - Água Marinha / Topázio Azul Sky com Halo e Aro Duplo Cravejado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r32.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r33",
+    "title": "Anel Bali Turquesa - Folhas Vazadas",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r33.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r34",
+    "title": "Anel Turquesa Grande - Bali Vazado Spider",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 350.0,
+    "image": "images/produtos/r34.jpg",
+    "size": "Nº 13"
+  },
+  {
+    "id": "r35",
+    "title": "Anel Flor Esmeralda - Aro Duplo com Halo de Zircônias",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 169.9,
+    "image": "images/produtos/r35.jpg",
+    "size": "Nº 24"
+  },
+  {
+    "id": "r36",
+    "title": "Anel Pena Larga - Folha de Samambaia / Feather Regulável",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 290.0,
+    "image": "images/produtos/r36.jpg",
+    "size": null
+  },
+  {
+    "id": "r37",
+    "title": "Anel Gota Lápis Lazúli - com Marcassitas",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r37.jpg",
+    "size": "Nº 16"
+  },
+  {
+    "id": "r38",
+    "title": "Anel Solitário Retangular Cristal - Corte Esmeralda",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 145.9,
+    "image": "images/produtos/r38.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r39",
+    "title": "Anel Turquesa Oval - Bali Vazado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 250.0,
+    "image": "images/produtos/r39.jpg",
+    "size": "Nº 23"
+  },
+  {
+    "id": "r40",
+    "title": "Anel Pedra da Lua Oval Grande - Bali Trabalhado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 299.9,
+    "image": "images/produtos/r40.jpg",
+    "size": "Nº 20"
+  },
+  {
+    "id": "r41",
+    "title": "Anel Topázio Místico Oval - Bali Filigrana Vazada",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 320.0,
+    "image": "images/produtos/r41.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r42",
+    "title": "Anel em Bali com pérola shell branca em formato cabochão. Brilho perolado, acabamento artesanal oxidado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 150.0,
+    "image": "images/produtos/r42.jpg",
+    "size": "Nº 14"
+  },
+  {
+    "id": "r43",
+    "title": "Anel em Bali com Ônix Preto Natural",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 139.9,
+    "image": "images/produtos/r43.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r44",
+    "title": "Anel Solitário Clássico com Zircônia Redonda Grande",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 149.9,
+    "image": "images/produtos/r44.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r45",
+    "title": "Anel com Pedra da Lua Natural Oval",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 250.0,
+    "image": "images/produtos/r45.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r46",
+    "title": "Anel com Madrepérola - Clássico Oval",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 200.0,
+    "image": "images/produtos/r46.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r47",
+    "title": "Anel com Pedra Rubi Retangular",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 189.9,
+    "image": "images/produtos/r47.jpg",
+    "size": "Nº 23"
+  },
+  {
+    "id": "r48",
+    "title": "Anel Solitário com Ônix Preto Retangular",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 149.9,
+    "image": "images/produtos/r48.jpg",
+    "size": "Nº 26"
+  },
+  {
+    "id": "r49",
+    "title": "Anel Solitário Rubi Oval com Meia Aliança Colorida",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 169.9,
+    "image": "images/produtos/r49.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r50",
+    "title": "Anel Flor Turquesa Natural com Marcasitas",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 145.0,
+    "image": "images/produtos/r50.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r51",
+    "title": "Anel Solitário Rubi Oval com Zircônias",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 149.9,
+    "image": "images/produtos/r51.jpg",
+    "size": "Nº 23"
+  },
+  {
+    "id": "r52",
+    "title": "Anel Solitário Rubi Oval - com Zircônias",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 159.9,
+    "image": "images/produtos/r52.jpg",
+    "size": "Nº 20"
+  },
+  {
+    "id": "r53",
+    "title": "Anel Navette Turquesa Natural - com Marcasitas - Modelo Vintage Grande",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 180.0,
+    "image": "images/produtos/r53.jpg",
+    "size": "Nº 20"
+  },
+  {
+    "id": "r54",
+    "title": "Anel Gota Turquesa Natural - com Marcasitas - Modelo Delicado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 139.9,
+    "image": "images/produtos/r54.jpg",
+    "size": "Nº 18"
+  },
+  {
+    "id": "r55",
+    "title": "Anel Gota Coral Vermelho Natural - com Marcasitas - Modelo Delicado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 159.9,
+    "image": "images/produtos/r55.jpg",
+    "size": "Nº 15"
+  },
+  {
+    "id": "r56",
+    "title": "Anel Bali Turquesa Redonda Natural - Modelo Boho Trabalhado",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 180.0,
+    "image": "images/produtos/r56.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r57",
+    "title": "Anel Navette Ágata Verde - com Marcasitas - Modelo Rendado Grande",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 180.9,
+    "image": "images/produtos/r57.jpg",
+    "size": "Nº 21"
+  },
+  {
+    "id": "r58",
+    "title": "Anel Oval Ônix Preto Natural - Modelo Clássico Grande Liso",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 280.0,
+    "image": "images/produtos/r58.jpg",
+    "size": "Nº 17"
+  },
+  {
+    "id": "r59",
+    "title": "Anel Solitário Esmeralda Gota Facetada - Modelo Clássico 3 Garras",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 270.0,
+    "image": "images/produtos/r59.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r60",
+    "title": "Anel Oval Rubi Rosa com Halo de Zircônias - Modelo Princesa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 280.0,
+    "image": "images/produtos/r60.jpg",
+    "size": "Nº 16"
+  },
+  {
+    "id": "r61",
+    "title": "Anel Spinner Giratório Boho Zodíaco Leão - Largo - Modelo Anti-Stress regulável",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 250.0,
+    "image": "images/produtos/r61.jpg",
+    "size": null
+  },
+  {
+    "id": "r62",
+    "title": "Anel Oval Ágata Vermelha / Cornalina Natural - Filigrana Vintage - Grande",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 245.9,
+    "image": "images/produtos/r62.jpg",
+    "size": "Nº 19"
+  },
+  {
+    "id": "r63",
+    "title": "Anel Chapa Largo Liso Polido - Modelo Minimalista Statement",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 299.9,
+    "image": "images/produtos/r63.jpg",
+    "size": "Nº 25"
+  },
+  {
+    "id": "r64",
+    "title": "Anel Rosa Grande Pétalas Abertas - Bali - Modelo Camélia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 400.0,
+    "image": "images/produtos/r64.jpg",
+    "size": "Nº 22"
+  },
+  {
+    "id": "r65",
+    "title": "Anel Rosa Grande Pétalas Abertas - Bali - Modelo Camélia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 350.0,
+    "image": "images/produtos/r65.jpg",
+    "size": "Nº 18"
+  },
+  {
+    "id": "r66",
+    "title": "Anel Rosa Grande Pétalas Abertas - Bali - Modelo Camélia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "aneis",
+    "price": 300.0,
+    "image": "images/produtos/r66.jpg",
+    "size": "Nº 13 e Nº 12"
+  },
+  {
+    "id": "e01",
+    "title": "Brinco em Prata 925 com Ametista Natural em formato gota facetada e detalhe de coroa rendada (pedra maior)",
+    "description": "Luxo discreto.",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e01.jpg",
+    "size": null
+  },
+  {
+    "id": "e02",
+    "title": "Brinco em Prata 925 com Ametista Natural em formato gota facetada e detalhe de coroa rendada (pedra menor)",
+    "description": "Luxo discreto.",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 120.0,
+    "image": "images/produtos/e02.jpg",
+    "size": null
+  },
+  {
+    "id": "e03",
+    "title": "Brinco Pendente Ametista Natural Esfera Facetada em Prata 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 90.0,
+    "image": "images/produtos/e03.jpg",
+    "size": null
+  },
+  {
+    "id": "e04",
+    "title": "Brinco Ponto de Luz Jade Natural Verde em Prata 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 50.0,
+    "image": "images/produtos/e04.jpg",
+    "size": null
+  },
+  {
+    "id": "e05",
+    "title": "Brinco ponto de luz em Ametista Natural roxa com detalhe de coroa",
+    "description": "Delicado, sofisticado e prata 925",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 100.0,
+    "image": "images/produtos/e05.jpg",
+    "size": null
+  },
+  {
+    "id": "e06",
+    "title": "Brinco Ponto de Luz Bola de Fogo Granada Natural Vermelha, prata 925",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 45.0,
+    "image": "images/produtos/e06.jpg",
+    "size": null
+  },
+  {
+    "id": "e07",
+    "title": "Brinco Ponto de Luz Ônix Preto Natural em Prata 925 - 10mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 45.0,
+    "image": "images/produtos/e07.jpg",
+    "size": null
+  },
+  {
+    "id": "e08",
+    "title": "Brinco Ponto de Luz Ágata Vermelha Natural em Prata 925 - 10mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 45.0,
+    "image": "images/produtos/e08.jpg",
+    "size": null
+  },
+  {
+    "id": "e09",
+    "title": "Brinco Pendente Ágata Vermelha Facetada em Prata 925 - 12mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 100.0,
+    "image": "images/produtos/e09.jpg",
+    "size": null
+  },
+  {
+    "id": "e10",
+    "title": "Brinco Pendente Ágata Verde Natural em Prata 925 - 12mm",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 100.0,
+    "image": "images/produtos/e10.jpg",
+    "size": null
+  },
+  {
+    "id": "e11",
+    "title": "Brinco gancho longo em Prata 925 com Turquesa Natural 12mm",
+    "description": "Modelo boho chic, leve e super estiloso!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 250.0,
+    "image": "images/produtos/e11.jpg",
+    "size": null
+  },
+  {
+    "id": "e12",
+    "title": "Brinco pendente em Prata 925 com Olho de Tigre Natural 14mm",
+    "description": "Pedra com brilho que se movimenta, super sofisticado!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e12.jpg",
+    "size": null
+  },
+  {
+    "id": "e13",
+    "title": "Brinco pendente longo em Prata 925 com Ágata Verde Escura Natural 12mm",
+    "description": "Sofisticado, elegante e atemporal!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e13.jpg",
+    "size": null
+  },
+  {
+    "id": "e14",
+    "title": "Brinco pendente longo em Prata 925 com Olho de Tigre Natural facetado 10mm",
+    "description": "Muito mais brilho e sofisticação!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e14.jpg",
+    "size": null
+  },
+  {
+    "id": "e15",
+    "title": "Brinco pendente longo em Prata 925 com Quartzo Fumê Natural facetado 12mm",
+    "description": "Sofisticado, neutro e combina com tudo!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e15.jpg",
+    "size": null
+  },
+  {
+    "id": "e16",
+    "title": "Brinco longo curvo em Prata 925 com Ametista Natural 10mm",
+    "description": "Modelo minimalista, moderno e super elegante!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e16.jpg",
+    "size": null
+  },
+  {
+    "id": "e17",
+    "title": "Brinco pendente longo em Prata 925 com Ônix Preto Natural facetado 12mm",
+    "description": "Clássico, poderoso e super elegante!",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/e17.jpg",
+    "size": null
+  },
+  {
+    "id": "w01",
+    "title": "Argolinha Coração",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 35.0,
+    "image": "images/produtos/w01.jpg",
+    "size": null
+  },
+  {
+    "id": "w02",
+    "title": "Argolinha Cravejada de Zircônia",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 160.0,
+    "image": "images/produtos/w02.jpg",
+    "size": null
+  },
+  {
+    "id": "w03",
+    "title": "Argola Redonda",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 50.0,
+    "image": "images/produtos/w03.jpg",
+    "size": null
+  },
+  {
+    "id": "w04",
+    "title": "Argola 3 Fios",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 80.0,
+    "image": "images/produtos/w04.jpg",
+    "size": null
+  },
+  {
+    "id": "w05",
+    "title": "Argola Lisa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 80.0,
+    "image": "images/produtos/w05.jpg",
+    "size": null
+  },
+  {
+    "id": "w06",
+    "title": "Argola Lisa G",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 150.0,
+    "image": "images/produtos/w06.jpg",
+    "size": null
+  },
+  {
+    "id": "w07",
+    "title": "Argola G Fina",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 60.0,
+    "image": "images/produtos/w07.jpg",
+    "size": null
+  },
+  {
+    "id": "w08",
+    "title": "Argola Trançada",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 60.0,
+    "image": "images/produtos/w08.jpg",
+    "size": null
+  },
+  {
+    "id": "w09",
+    "title": "Argola Gota",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 80.0,
+    "image": "images/produtos/w09.jpg",
+    "size": null
+  },
+  {
+    "id": "w10",
+    "title": "Argola Formato Gota",
+    "description": "",
+    "material": "Prata 925",
+    "category": "brincos",
+    "price": 39.9,
+    "image": "images/produtos/w10.jpg",
+    "size": null
+  },
+  {
+    "id": "w11",
+    "title": "Pulseira 3 Fios",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 350.0,
+    "image": "images/produtos/w11.jpg",
+    "size": null
+  },
+  {
+    "id": "w12",
+    "title": "Pulseira Flores Prata Envelhecida",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 800.0,
+    "image": "images/produtos/w12.jpg",
+    "size": null
+  },
+  {
+    "id": "w13",
+    "title": "Bracelete Borboleta",
+    "description": "",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 500.0,
+    "image": "images/produtos/w13.jpg",
+    "size": null
+  },
+  {
+    "id": "w14",
+    "title": "Bracelete Arabescos",
+    "description": "",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 550.0,
+    "image": "images/produtos/w14.jpg",
+    "size": null
+  },
+  {
+    "id": "w15",
+    "title": "Pulseira Bola Shamballa",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 110.0,
+    "image": "images/produtos/w15.jpg",
+    "size": null
+  },
+  {
+    "id": "w16",
+    "title": "Pulseira Margarida Esmaltada",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 90.0,
+    "image": "images/produtos/w16.jpg",
+    "size": null
+  },
+  {
+    "id": "w17",
+    "title": "Pulseira Masculina Elo Figaro",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 350.0,
+    "image": "images/produtos/w17.jpg",
+    "size": null
+  },
+  {
+    "id": "w18",
+    "title": "Pulseira Masculina Elo Grumet",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 580.0,
+    "image": "images/produtos/w18.jpg",
+    "size": null
+  },
+  {
+    "id": "w19",
+    "title": "Pulseira Masculina Elo Cartier",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 1000.0,
+    "image": "images/produtos/w19.jpg",
+    "size": null
+  },
+  {
+    "id": "w20",
+    "title": "Pulseira Pandora",
+    "description": "",
+    "material": "Prata 925",
+    "category": "pulseiras",
+    "price": 290.0,
+    "image": "images/produtos/w20.jpg",
+    "size": null
+  },
+  {
+    "id": "w21",
+    "title": "Bracelete Prata Liso",
+    "description": "",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 150.0,
+    "image": "images/produtos/w21.jpg",
+    "size": null
+  },
+  {
+    "id": "w22",
+    "title": "Par de Braceletes Lisos",
+    "description": "Valor por unidade.",
+    "material": "Prata 925",
+    "category": "braceletes",
+    "price": 250.0,
+    "image": "images/produtos/w22.jpg",
+    "size": null
+  }
+]
