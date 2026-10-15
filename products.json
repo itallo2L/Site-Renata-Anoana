@@ -95,7 +95,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r01.jpg",
     "size": "Nº 22"
   },
@@ -105,7 +105,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r02.jpg",
     "size": "Nº 17"
   },
@@ -115,7 +115,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r03.jpg",
     "size": "Nº 16"
   },
@@ -125,7 +125,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r04.jpg",
     "size": "Nº 14 e Nº 19"
   },
@@ -135,7 +135,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r05.jpg",
     "size": "Nº 15"
   },
@@ -145,7 +145,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r06.jpg",
     "size": "Nº 17"
   },
@@ -155,7 +155,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r07.jpg",
     "size": "Nº 17"
   },
@@ -165,7 +165,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r08.jpg",
     "size": "Nº 16"
   },
@@ -175,7 +175,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r09.jpg",
     "size": "Nº 19"
   },
@@ -185,7 +185,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r10.jpg",
     "size": "Nº 18"
   },
@@ -195,7 +195,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/r11.jpg",
     "size": "Nº 21"
   },
@@ -205,7 +205,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r12.jpg",
     "size": "Nº 17"
   },
@@ -215,7 +215,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r13.jpg",
     "size": "Nº 18"
   },
@@ -225,7 +225,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r14.jpg",
     "size": "Nº 22"
   },
@@ -325,7 +325,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r24.jpg",
     "size": "Nº 21"
   },
@@ -335,7 +335,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 270.0,
+    "price": 270,
     "image": "images/produtos/r25.jpg",
     "size": "Nº 19"
   },
@@ -355,7 +355,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 95.0,
+    "price": 95,
     "image": "images/produtos/r27.jpg",
     "size": "Nº 19"
   },
@@ -365,7 +365,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 180.0,
+    "price": 180,
     "image": "images/produtos/r28.jpg",
     "size": "Nº 14"
   },
@@ -385,7 +385,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 300.0,
+    "price": 300,
     "image": "images/produtos/r30.jpg",
     "size": "Nº 23"
   },
@@ -395,7 +395,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 250.0,
+    "price": 250,
     "image": "images/produtos/r31.jpg",
     "size": "Nº 20"
   },
@@ -405,7 +405,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r32.jpg",
     "size": "Nº 17"
   },
@@ -415,7 +415,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r33.jpg",
     "size": "Nº 22"
   },
@@ -425,7 +425,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 350.0,
+    "price": 350,
     "image": "images/produtos/r34.jpg",
     "size": "Nº 13"
   },
@@ -445,7 +445,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 290.0,
+    "price": 290,
     "image": "images/produtos/r36.jpg",
     "size": null
   },
@@ -455,7 +455,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r37.jpg",
     "size": "Nº 16"
   },
@@ -475,7 +475,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 250.0,
+    "price": 250,
     "image": "images/produtos/r39.jpg",
     "size": "Nº 23"
   },
@@ -495,7 +495,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 320.0,
+    "price": 320,
     "image": "images/produtos/r41.jpg",
     "size": "Nº 19"
   },
@@ -505,7 +505,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/r42.jpg",
     "size": "Nº 14"
   },
@@ -535,7 +535,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 250.0,
+    "price": 250,
     "image": "images/produtos/r45.jpg",
     "size": "Nº 19"
   },
@@ -545,7 +545,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 200.0,
+    "price": 200,
     "image": "images/produtos/r46.jpg",
     "size": "Nº 19"
   },
@@ -585,7 +585,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 145.0,
+    "price": 145,
     "image": "images/produtos/r50.jpg",
     "size": "Nº 17"
   },
@@ -615,7 +615,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 180.0,
+    "price": 180,
     "image": "images/produtos/r53.jpg",
     "size": "Nº 20"
   },
@@ -645,7 +645,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 180.0,
+    "price": 180,
     "image": "images/produtos/r56.jpg",
     "size": "Nº 19"
   },
@@ -665,7 +665,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 280.0,
+    "price": 280,
     "image": "images/produtos/r58.jpg",
     "size": "Nº 17"
   },
@@ -675,7 +675,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 270.0,
+    "price": 270,
     "image": "images/produtos/r59.jpg",
     "size": "Nº 19"
   },
@@ -685,7 +685,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 280.0,
+    "price": 280,
     "image": "images/produtos/r60.jpg",
     "size": "Nº 16"
   },
@@ -695,7 +695,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 250.0,
+    "price": 250,
     "image": "images/produtos/r61.jpg",
     "size": null
   },
@@ -725,7 +725,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 400.0,
+    "price": 400,
     "image": "images/produtos/r64.jpg",
     "size": "Nº 22"
   },
@@ -735,7 +735,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 350.0,
+    "price": 350,
     "image": "images/produtos/r65.jpg",
     "size": "Nº 18"
   },
@@ -745,7 +745,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "aneis",
-    "price": 300.0,
+    "price": 300,
     "image": "images/produtos/r66.jpg",
     "size": "Nº 13 e Nº 12"
   },
@@ -755,7 +755,7 @@
     "description": "Luxo discreto.",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e01.jpg",
     "size": null
   },
@@ -765,7 +765,7 @@
     "description": "Luxo discreto.",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 120.0,
+    "price": 120,
     "image": "images/produtos/e02.jpg",
     "size": null
   },
@@ -775,7 +775,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 90.0,
+    "price": 90,
     "image": "images/produtos/e03.jpg",
     "size": null
   },
@@ -785,7 +785,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 50.0,
+    "price": 50,
     "image": "images/produtos/e04.jpg",
     "size": null
   },
@@ -795,7 +795,7 @@
     "description": "Delicado, sofisticado e prata 925",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/e05.jpg",
     "size": null
   },
@@ -805,7 +805,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 45.0,
+    "price": 45,
     "image": "images/produtos/e06.jpg",
     "size": null
   },
@@ -815,7 +815,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 45.0,
+    "price": 45,
     "image": "images/produtos/e07.jpg",
     "size": null
   },
@@ -825,7 +825,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 45.0,
+    "price": 45,
     "image": "images/produtos/e08.jpg",
     "size": null
   },
@@ -835,7 +835,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/e09.jpg",
     "size": null
   },
@@ -845,7 +845,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 100.0,
+    "price": 100,
     "image": "images/produtos/e10.jpg",
     "size": null
   },
@@ -855,7 +855,7 @@
     "description": "Modelo boho chic, leve e super estiloso!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 250.0,
+    "price": 250,
     "image": "images/produtos/e11.jpg",
     "size": null
   },
@@ -865,7 +865,7 @@
     "description": "Pedra com brilho que se movimenta, super sofisticado!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e12.jpg",
     "size": null
   },
@@ -875,7 +875,7 @@
     "description": "Sofisticado, elegante e atemporal!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e13.jpg",
     "size": null
   },
@@ -885,7 +885,7 @@
     "description": "Muito mais brilho e sofisticação!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e14.jpg",
     "size": null
   },
@@ -895,7 +895,7 @@
     "description": "Sofisticado, neutro e combina com tudo!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e15.jpg",
     "size": null
   },
@@ -905,7 +905,7 @@
     "description": "Modelo minimalista, moderno e super elegante!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e16.jpg",
     "size": null
   },
@@ -915,7 +915,7 @@
     "description": "Clássico, poderoso e super elegante!",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/e17.jpg",
     "size": null
   },
@@ -925,7 +925,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 35.0,
+    "price": 35,
     "image": "images/produtos/w01.jpg",
     "size": null
   },
@@ -935,7 +935,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 160.0,
+    "price": 160,
     "image": "images/produtos/w02.jpg",
     "size": null
   },
@@ -945,7 +945,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 50.0,
+    "price": 50,
     "image": "images/produtos/w03.jpg",
     "size": null
   },
@@ -955,7 +955,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 80.0,
+    "price": 80,
     "image": "images/produtos/w04.jpg",
     "size": null
   },
@@ -965,7 +965,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 80.0,
+    "price": 80,
     "image": "images/produtos/w05.jpg",
     "size": null
   },
@@ -975,7 +975,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/w06.jpg",
     "size": null
   },
@@ -985,7 +985,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 60.0,
+    "price": 60,
     "image": "images/produtos/w07.jpg",
     "size": null
   },
@@ -995,7 +995,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 60.0,
+    "price": 60,
     "image": "images/produtos/w08.jpg",
     "size": null
   },
@@ -1005,7 +1005,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "brincos",
-    "price": 80.0,
+    "price": 80,
     "image": "images/produtos/w09.jpg",
     "size": null
   },
@@ -1025,7 +1025,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 350.0,
+    "price": 350,
     "image": "images/produtos/w11.jpg",
     "size": null
   },
@@ -1035,7 +1035,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 800.0,
+    "price": 800,
     "image": "images/produtos/w12.jpg",
     "size": null
   },
@@ -1045,7 +1045,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "braceletes",
-    "price": 500.0,
+    "price": 500,
     "image": "images/produtos/w13.jpg",
     "size": null
   },
@@ -1055,7 +1055,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "braceletes",
-    "price": 550.0,
+    "price": 550,
     "image": "images/produtos/w14.jpg",
     "size": null
   },
@@ -1065,7 +1065,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 110.0,
+    "price": 110,
     "image": "images/produtos/w15.jpg",
     "size": null
   },
@@ -1075,7 +1075,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 90.0,
+    "price": 90,
     "image": "images/produtos/w16.jpg",
     "size": null
   },
@@ -1085,7 +1085,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 350.0,
+    "price": 350,
     "image": "images/produtos/w17.jpg",
     "size": null
   },
@@ -1095,7 +1095,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 580.0,
+    "price": 580,
     "image": "images/produtos/w18.jpg",
     "size": null
   },
@@ -1105,7 +1105,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 1000.0,
+    "price": 1000,
     "image": "images/produtos/w19.jpg",
     "size": null
   },
@@ -1115,7 +1115,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "pulseiras",
-    "price": 290.0,
+    "price": 290,
     "image": "images/produtos/w20.jpg",
     "size": null
   },
@@ -1125,7 +1125,7 @@
     "description": "",
     "material": "Prata 925",
     "category": "braceletes",
-    "price": 150.0,
+    "price": 150,
     "image": "images/produtos/w21.jpg",
     "size": null
   },
@@ -1135,8 +1135,18 @@
     "description": "Valor por unidade.",
     "material": "Prata 925",
     "category": "braceletes",
-    "price": 250.0,
+    "price": 250,
     "image": "images/produtos/w22.jpg",
     "size": null
+  },
+  {
+    "id": "teste-mv9x18wi",
+    "title": "Teste",
+    "description": "sadasdasd",
+    "material": "Prata Turca",
+    "category": "conjuntos",
+    "price": 10000,
+    "image": "images/produtos/teste-mv9x18wi.jpg",
+    "size": "43"
   }
 ]
