@@ -19,6 +19,10 @@ function getStore() {
     certificate: Buffer.from(certBase64, 'base64'),
     password: certPassword,
   });
+  // A instância free é um único nó: pular a descoberta de topologia de
+  // cluster evita uma rodada extra de ida-e-volta que deixa a primeira
+  // conexão (cold start em serverless) bem mais lenta do que precisa.
+  store.conventions.disableTopologyUpdates = true;
   store.initialize();
 
   storeInstance = store;

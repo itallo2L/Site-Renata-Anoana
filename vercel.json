@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/catalog.js": { "maxDuration": 30 },
+    "api/products.js": { "maxDuration": 30 },
+    "api/login.js": { "maxDuration": 15 }
+  }
+}
