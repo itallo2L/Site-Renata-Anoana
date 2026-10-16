@@ -69,17 +69,16 @@ Abra o `index.html` em qualquer editor de texto (Bloco de Notas, VS Code etc.).
 
 ## Painel (`admin.html`)
 
-O painel foi reescrito: agora é tela de login + CRUD de produtos que fala com um backend em `/api` (funções serverless). Não existe mais `SITE_TEMPLATE` nem exportação manual — ao salvar um produto no painel, o backend já grava a alteração direto no `products.json` do repositório (e na imagem, se houver) via API do GitHub. O site (`index.html`) lê o `products.json` normalmente, então a próxima publicação já reflete a mudança.
+O painel é tela de login + CRUD de produtos que fala com um backend em `/api` (funções serverless). Os **dados dos produtos** (título, preço, descrição etc.) ficam no **RavenDB**; as **fotos** continuam sendo commitadas no repositório via API do GitHub, como antes — só o texto/preço saiu do fluxo de commit, porque é o que mudava com mais frequência.
 
 ### Backend (`/api`) e deploy na Vercel
-
-Como o catálogo é um JSON versionado no git, não há banco de dados: o backend autentica a Renata e usa a API do GitHub para commitar as mudanças em `products.json` (e em `images/produtos/`) neste mesmo repositório.
 
 O site estático (`index.html`, `admin.html`) continua no **GitHub Pages**, em `renataanoana.com.br` — só o backend (`/api`) roda na **Vercel**, no subdomínio `api.renataanoana.com.br`. Isso evita colocar a vitrine comercial no plano gratuito da Vercel (cujos termos restringem o Hobby a uso não-comercial) e mantém o GitHub Pages, que não tem essa restrição, cuidando do que já funciona.
 
 - `api/login.js`, `api/logout.js`, `api/session.js` — autenticação por senha única, sessão em cookie `httpOnly` assinado (sem biblioteca de JWT, HMAC simples em `api/_lib/auth.js`).
-- `api/products.js` — CRUD (`GET`/`POST`/`PUT`/`DELETE`), protegido por sessão.
-- `api/_lib/github.js` — leitura/escrita de arquivos no repositório via GitHub Contents API.
+- `api/products.js` — CRUD (`GET`/`POST`/`PUT`/`DELETE`) dos produtos no RavenDB, protegido por sessão. As fotos continuam indo pro GitHub via `api/_lib/github.js`.
+- `api/catalog.js` — endpoint **público** (sem login) que o `index.html` usa pra mostrar o catálogo: lê o RavenDB ao vivo, sem cache (`Cache-Control: no-store`).
+- `api/_lib/ravendb.js` — abre a sessão do RavenDB (RavenDB Cloud, autenticação por certificado cliente).
 - `api/_lib/cors.js` — libera CORS (com credenciais) só para as origens em `ALLOWED_ORIGINS`, já que front e API ficam em domínios diferentes.
 
 Passos para publicar:
@@ -88,12 +87,14 @@ Passos para publicar:
 2. Configurar as variáveis de ambiente do projeto na Vercel (veja `.env.example`):
    - `ADMIN_PASSWORD_HASH` — hash bcrypt da senha da Renata.
    - `SESSION_SECRET` — string aleatória longa.
-   - `GITHUB_TOKEN` — Personal Access Token (fine-grained) com permissão de escrita em "Contents" **apenas neste repositório**.
+   - `GITHUB_TOKEN` — Personal Access Token (fine-grained) com permissão de escrita em "Contents" **apenas neste repositório**, usado só pras fotos.
    - `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH`.
    - `ALLOWED_ORIGINS` — `https://renataanoana.com.br,https://www.renataanoana.com.br` (origens do GitHub Pages autorizadas a chamar a API).
+   - `RAVENDB_URLS`, `RAVENDB_DATABASE`, `RAVENDB_CERT_BASE64`, `RAVENDB_CERT_PASSWORD` — conexão com a instância do RavenDB Cloud (veja comentários no `.env.example`).
 3. Em **Settings → Domains** do projeto na Vercel, adicionar `api.renataanoana.com.br` (não o domínio raiz — esse continua no GitHub Pages). Criar no registrador do domínio um registro `CNAME` para o host `api` apontando para o valor que a Vercel indicar (ex.: `cname.vercel-dns.com`), sem mexer nos registros do domínio raiz nem do `www`.
+4. Rodar `node scripts/migrate-to-ravendb.js` **uma única vez** (localmente, com as mesmas variáveis num `.env`) pra importar os produtos que já estavam em `products.json` pro RavenDB.
 
-Cada alteração salva no painel gera um commit automático no repositório (autor "Painel Renata Anoana"), então o histórico de mudanças do catálogo fica no `git log` normalmente.
+Depois da migração, o `products.json` do repositório para de ser atualizado (as fotos continuam sendo commitadas normalmente) — ele vira só um retrato congelado de antes da migração, usado como último recurso se a API e o `raw.githubusercontent.com` estiverem fora do ar ao mesmo tempo (veja a cadeia de fontes do catálogo no `index.html`).
 
 ## Observações
 

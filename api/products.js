@@ -1,8 +1,7 @@
 const { isAuthenticated } = require('./_lib/auth');
 const { getFile, putFile } = require('./_lib/github');
+const { openSession } = require('./_lib/ravendb');
 const { applyCors, handlePreflight } = require('./_lib/cors');
-
-const PRODUCTS_PATH = 'products.json';
 
 function slugify(text) {
   return text
@@ -14,14 +13,8 @@ function slugify(text) {
     .replace(/(^-|-$)/g, '');
 }
 
-async function readProducts() {
-  const { content, sha } = await getFile(PRODUCTS_PATH);
-  return { products: JSON.parse(content), sha };
-}
-
-async function writeProducts(products, sha, message) {
-  const content = JSON.stringify(products, null, 2) + '\n';
-  return putFile({ path: PRODUCTS_PATH, content, message, sha });
+function docId(id) {
+  return `products/${id}`;
 }
 
 async function saveImage(productId, imageDataUrl) {
@@ -63,9 +56,11 @@ module.exports = async (req, res) => {
     return res.status(401).json({ error: 'Não autenticado' });
   }
 
+  const session = openSession();
+
   try {
     if (req.method === 'GET') {
-      const { products } = await readProducts();
+      const products = await session.query({ collection: 'Products' }).all();
       return res.status(200).json(products);
     }
 
@@ -74,9 +69,9 @@ module.exports = async (req, res) => {
       if (!product || !product.title) {
         return res.status(400).json({ error: 'Produto inválido: título é obrigatório' });
       }
-      const { products, sha } = await readProducts();
       const id = product.id || `${slugify(product.title)}-${Date.now().toString(36)}`;
-      if (products.some((p) => p.id === id)) {
+      const existing = await session.load(docId(id));
+      if (existing) {
         return res.status(409).json({ error: 'Já existe um produto com esse id' });
       }
 
@@ -93,8 +88,8 @@ module.exports = async (req, res) => {
         image: imagePath,
         size: product.size || null,
       };
-      products.push(newProduct);
-      await writeProducts(products, sha, `Adiciona produto ${newProduct.title}`);
+      await session.store(newProduct, docId(id));
+      await session.saveChanges();
       return res.status(201).json(newProduct);
     }
 
@@ -105,34 +100,30 @@ module.exports = async (req, res) => {
       const { product, image } = req.body || {};
       if (!product) return res.status(400).json({ error: 'Dados do produto são obrigatórios' });
 
-      const { products, sha } = await readProducts();
-      const index = products.findIndex((p) => p.id === id);
-      if (index === -1) return res.status(404).json({ error: 'Produto não encontrado' });
+      const existing = await session.load(docId(id));
+      if (!existing) return res.status(404).json({ error: 'Produto não encontrado' });
 
-      let imagePath = product.image ?? products[index].image;
+      let imagePath = product.image ?? existing.image;
       if (image) imagePath = await saveImage(id, image);
 
-      products[index] = {
-        ...products[index],
-        ...product,
+      Object.assign(existing, product, {
         id,
         image: imagePath,
-        price: normalizePrice(product.price, products[index].price),
-      };
-      await writeProducts(products, sha, `Atualiza produto ${products[index].title}`);
-      return res.status(200).json(products[index]);
+        price: normalizePrice(product.price, existing.price),
+      });
+      await session.saveChanges();
+      return res.status(200).json(existing);
     }
 
     if (req.method === 'DELETE') {
       const id = req.query.id;
       if (!id) return res.status(400).json({ error: 'id é obrigatório' });
 
-      const { products, sha } = await readProducts();
-      const index = products.findIndex((p) => p.id === id);
-      if (index === -1) return res.status(404).json({ error: 'Produto não encontrado' });
+      const existing = await session.load(docId(id));
+      if (!existing) return res.status(404).json({ error: 'Produto não encontrado' });
 
-      const [removed] = products.splice(index, 1);
-      await writeProducts(products, sha, `Remove produto ${removed.title}`);
+      session.delete(existing);
+      await session.saveChanges();
       return res.status(200).json({ ok: true });
     }
 
