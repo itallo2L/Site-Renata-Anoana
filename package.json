@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "description": "Site e painel administrativo da Renata Anoana",
   "dependencies": {
-    "bcryptjs": "^2.4.3"
+    "bcryptjs": "^2.4.3",
+    "ravendb": "^7.2.7"
+  },
+  "devDependencies": {
+    "dotenv": "^18.0.8"
   }
 }

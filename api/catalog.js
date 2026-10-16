@@ -1,6 +1,4 @@
-const { getFile } = require('./_lib/github');
-
-const PRODUCTS_PATH = 'products.json';
+const { openSession } = require('./_lib/ravendb');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,9 +13,10 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { content } = await getFile(PRODUCTS_PATH);
+    const session = openSession();
+    const products = await session.query({ collection: 'Products' }).all();
     res.setHeader('Cache-Control', 'no-store');
-    res.status(200).json(JSON.parse(content));
+    res.status(200).json(products);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Não foi possível carregar o catálogo' });
