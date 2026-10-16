@@ -30,10 +30,20 @@ async function saveImage(productId, imageDataUrl) {
   const ext = match[1] === 'jpeg' ? 'jpg' : match[1];
   const base64 = match[2];
   const path = `images/produtos/${productId}.${ext}`;
+
+  let sha;
+  try {
+    const existing = await getFile(path);
+    sha = existing.sha;
+  } catch (err) {
+    if (err.status !== 404) throw err;
+  }
+
   await putFile({
     path,
     content: base64,
     isBase64: true,
+    sha,
     message: `Atualiza imagem de ${productId}`,
   });
   return path;
