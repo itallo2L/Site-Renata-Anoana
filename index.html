@@ -749,8 +749,15 @@
     });
   }
 
-  fetch('products.json')
-    .then(function(res){ return res.json(); })
+  // O GitHub Pages leva alguns minutos pra republicar depois de um commit;
+  // o raw.githubusercontent.com serve o arquivo direto do git, sem esperar
+  // esse build, então o catálogo atualiza quase na hora. Se ele falhar
+  // (fora do ar, rate limit etc.), cai pro products.json local normal.
+  var RAW_PRODUCTS_URL = 'https://raw.githubusercontent.com/itallo2L/Site-Renata-Anoana/main/products.json';
+
+  fetch(RAW_PRODUCTS_URL, { cache: 'no-store' })
+    .then(function(res){ if (!res.ok) throw new Error('raw indisponível'); return res.json(); })
+    .catch(function(){ return fetch('products.json').then(function(res){ return res.json(); }); })
     .then(function(products){
       grid.innerHTML = products.map(cardHtml).join('\n\n');
       setupFilters();
