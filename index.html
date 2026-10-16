@@ -749,15 +749,24 @@
     });
   }
 
-  // O GitHub Pages leva alguns minutos pra republicar depois de um commit;
-  // o raw.githubusercontent.com serve o arquivo direto do git, sem esperar
-  // esse build, então o catálogo atualiza quase na hora. Se ele falhar
-  // (fora do ar, rate limit etc.), cai pro products.json local normal.
+  // Cadeia de fontes do catálogo, da mais atual pra mais resiliente:
+  // 1) API da Vercel, que lê o GitHub ao vivo sem cache nenhum (instantâneo);
+  // 2) raw.githubusercontent.com, direto do git (cache de ~5min), caso a API
+  //    esteja fora do ar;
+  // 3) products.json local publicado pelo GitHub Pages, como último recurso.
+  var CATALOG_API_URL = 'https://api.renataanoana.com.br/api/catalog';
   var RAW_PRODUCTS_URL = 'https://raw.githubusercontent.com/itallo2L/Site-Renata-Anoana/main/products.json';
 
-  fetch(RAW_PRODUCTS_URL, { cache: 'no-store' })
-    .then(function(res){ if (!res.ok) throw new Error('raw indisponível'); return res.json(); })
-    .catch(function(){ return fetch('products.json').then(function(res){ return res.json(); }); })
+  function fetchJson(url, options) {
+    return fetch(url, options).then(function(res){
+      if (!res.ok) throw new Error('falha ao buscar ' + url);
+      return res.json();
+    });
+  }
+
+  fetchJson(CATALOG_API_URL, { cache: 'no-store' })
+    .catch(function(){ return fetchJson(RAW_PRODUCTS_URL, { cache: 'no-store' }); })
+    .catch(function(){ return fetchJson('products.json'); })
     .then(function(products){
       grid.innerHTML = products.map(cardHtml).join('\n\n');
       setupFilters();
