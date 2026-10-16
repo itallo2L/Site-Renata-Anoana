@@ -7,6 +7,8 @@ const fs = require('fs');
 const path = require('path');
 const { getStore } = require('../api/_lib/ravendb');
 
+const COLLECTION = 'Products';
+
 async function main() {
   const productsPath = path.join(__dirname, '..', 'products.json');
   const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
@@ -16,12 +18,15 @@ async function main() {
   let count = 0;
 
   for (const product of products) {
-    const id = product.id;
+    const { id, ...fields } = product;
     if (!id) {
       console.warn('Pulando produto sem id:', product.title);
       continue;
     }
-    await bulkInsert.store(product, `products/${id}`);
+    // O id curto vira o id do documento ("products/<id>"); não é
+    // guardado como campo pra não conflitar com o controle de
+    // identidade que a própria biblioteca do RavenDB faz via "id".
+    await bulkInsert.store(fields, `products/${id}`, { '@collection': COLLECTION });
     count++;
   }
 

@@ -3,6 +3,8 @@ const { getFile, putFile } = require('./_lib/github');
 const { openSession } = require('./_lib/ravendb');
 const { applyCors, handlePreflight } = require('./_lib/cors');
 
+const COLLECTION = 'Products';
+
 function slugify(text) {
   return text
     .toString()
@@ -13,8 +15,30 @@ function slugify(text) {
     .replace(/(^-|-$)/g, '');
 }
 
+// O id curto (ex: "teste-mv9x18wi") é derivado do id do documento no
+// RavenDB ("products/teste-mv9x18wi"). Não é guardado como campo dentro
+// do documento porque a própria biblioteca do RavenDB usa a propriedade
+// "id" da entidade pra controlar a identidade do documento internamente
+// — guardar nosso id curto ali conflita com esse controle.
 function docId(id) {
   return `products/${id}`;
+}
+
+function shortId(ravenDocId) {
+  return ravenDocId.replace(/^products\//, '');
+}
+
+function toApiShape(entity) {
+  return {
+    id: shortId(entity.id),
+    title: entity.title,
+    description: entity.description,
+    material: entity.material,
+    category: entity.category,
+    price: entity.price,
+    image: entity.image,
+    size: entity.size,
+  };
 }
 
 async function saveImage(productId, imageDataUrl) {
@@ -60,8 +84,8 @@ module.exports = async (req, res) => {
 
   try {
     if (req.method === 'GET') {
-      const products = await session.query({ collection: 'Products' }).all();
-      return res.status(200).json(products);
+      const entities = await session.query({ collection: COLLECTION }).all();
+      return res.status(200).json(entities.map(toApiShape));
     }
 
     if (req.method === 'POST') {
@@ -78,8 +102,7 @@ module.exports = async (req, res) => {
       let imagePath = product.image || '';
       if (image) imagePath = await saveImage(id, image);
 
-      const newProduct = {
-        id,
+      const doc = {
         title: product.title,
         description: product.description || '',
         material: product.material || '',
@@ -88,9 +111,19 @@ module.exports = async (req, res) => {
         image: imagePath,
         size: product.size || null,
       };
-      await session.store(newProduct, docId(id));
+      await session.store(doc, docId(id));
+      session.advanced.getMetadataFor(doc)['@collection'] = COLLECTION;
       await session.saveChanges();
-      return res.status(201).json(newProduct);
+      return res.status(201).json({
+        id,
+        title: doc.title,
+        description: doc.description,
+        material: doc.material,
+        category: doc.category,
+        price: doc.price,
+        image: doc.image,
+        size: doc.size,
+      });
     }
 
     if (req.method === 'PUT') {
@@ -106,13 +139,13 @@ module.exports = async (req, res) => {
       let imagePath = product.image ?? existing.image;
       if (image) imagePath = await saveImage(id, image);
 
-      Object.assign(existing, product, {
-        id,
+      const { id: _ignoreId, ...fields } = product;
+      Object.assign(existing, fields, {
         image: imagePath,
         price: normalizePrice(product.price, existing.price),
       });
       await session.saveChanges();
-      return res.status(200).json(existing);
+      return res.status(200).json(toApiShape(existing));
     }
 
     if (req.method === 'DELETE') {
