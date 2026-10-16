@@ -5,13 +5,14 @@ require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
-const { openSession } = require('../api/_lib/ravendb');
+const { getStore } = require('../api/_lib/ravendb');
 
 async function main() {
   const productsPath = path.join(__dirname, '..', 'products.json');
   const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
 
-  const session = openSession();
+  const store = getStore();
+  const bulkInsert = store.bulkInsert();
   let count = 0;
 
   for (const product of products) {
@@ -20,16 +21,11 @@ async function main() {
       console.warn('Pulando produto sem id:', product.title);
       continue;
     }
-    const existing = await session.load(`products/${id}`);
-    if (existing) {
-      console.log(`Já existe, pulando: ${id}`);
-      continue;
-    }
-    await session.store(product, `products/${id}`);
+    await bulkInsert.store(product, `products/${id}`);
     count++;
   }
 
-  await session.saveChanges();
+  await bulkInsert.finish();
   console.log(`Migração concluída: ${count} produto(s) gravado(s) no RavenDB.`);
 }
 
