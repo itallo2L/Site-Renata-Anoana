@@ -15,7 +15,7 @@ function toApiShape(entity) {
     material: entity.material,
     category: entity.category,
     price: entity.price,
-    image: toPublicImageUrl(entity.image),
+    image: toPublicImageUrl(entity.image, entity.imageVersion),
     size: entity.size,
   };
 }

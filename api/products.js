@@ -36,7 +36,7 @@ function toApiShape(entity) {
     material: entity.material,
     category: entity.category,
     price: entity.price,
-    image: toPublicImageUrl(entity.image),
+    image: toPublicImageUrl(entity.image, entity.imageVersion),
     size: entity.size,
   };
 }
@@ -56,14 +56,14 @@ async function saveImage(productId, imageDataUrl) {
     if (err.status !== 404) throw err;
   }
 
-  await putFile({
+  const result = await putFile({
     path,
     content: base64,
     isBase64: true,
     sha,
     message: `Atualiza imagem de ${productId}`,
   });
-  return path;
+  return { path, version: result.content.sha };
 }
 
 function normalizePrice(value, fallback) {
@@ -100,7 +100,8 @@ module.exports = async (req, res) => {
       }
 
       let imagePath = product.image || '';
-      if (image) imagePath = await saveImage(id, image);
+      let imageVersion;
+      if (image) ({ path: imagePath, version: imageVersion } = await saveImage(id, image));
 
       const doc = {
         title: product.title,
@@ -109,6 +110,7 @@ module.exports = async (req, res) => {
         category: product.category || '',
         price: normalizePrice(product.price, null),
         image: imagePath,
+        imageVersion: imageVersion || null,
         size: product.size || null,
       };
       await session.store(doc, docId(id));
@@ -128,11 +130,13 @@ module.exports = async (req, res) => {
       if (!existing) return res.status(404).json({ error: 'Produto não encontrado' });
 
       let imagePath = product.image ?? existing.image;
-      if (image) imagePath = await saveImage(id, image);
+      let imageVersion = existing.imageVersion;
+      if (image) ({ path: imagePath, version: imageVersion } = await saveImage(id, image));
 
       const { id: _ignoreId, ...fields } = product;
       Object.assign(existing, fields, {
         image: imagePath,
+        imageVersion,
         price: normalizePrice(product.price, existing.price),
       });
       await session.saveChanges();

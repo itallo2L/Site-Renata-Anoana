@@ -61,14 +61,22 @@ async function putFile({ path, content, message, sha, isBase64 = false }) {
 // do caminho relativo servido pelo GitHub Pages: o raw fica disponível quase
 // na hora do commit, sem esperar o build/deploy do Pages (que pode levar
 // minutos e deixa o produto visível sem foto por um tempo).
-function toPublicImageUrl(imagePath) {
+//
+// `version` (o sha do blob da imagem no commit) vai como query string: o
+// raw.githubusercontent.com é servido por um CDN que cacheia agressivamente
+// por URL, e como a imagem sempre é salva no mesmo caminho, trocar a foto
+// sem mudar a URL faz o CDN continuar servindo a versão antiga por um tempo.
+// Mudando o sha a URL muda junto, então o cache antigo nunca é reaproveitado
+// pra uma imagem diferente.
+function toPublicImageUrl(imagePath, version) {
   if (!imagePath) return imagePath;
   if (/^https?:\/\//i.test(imagePath)) return imagePath;
   const owner = process.env.GITHUB_OWNER;
   const repo = process.env.GITHUB_REPO;
   const branch = process.env.GITHUB_BRANCH || 'main';
   if (!owner || !repo) return imagePath;
-  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${imagePath}`;
+  const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${imagePath}`;
+  return version ? `${url}?v=${version}` : url;
 }
 
 module.exports = { getFile, putFile, toPublicImageUrl };
