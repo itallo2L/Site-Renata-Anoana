@@ -1,7 +1,7 @@
 const { openSession } = require('./_lib/ravendb');
 const { toPublicImageUrl } = require('./_lib/github');
 
-const COLLECTION = 'Products';
+const ID_PREFIX = 'products/';
 
 function shortId(ravenDocId) {
   return ravenDocId.replace(/^products\//, '');
@@ -34,7 +34,11 @@ module.exports = async (req, res) => {
 
   try {
     const session = openSession();
-    const entities = await session.query({ collection: COLLECTION }).all();
+    // loadStartingWith lê direto do storage (sem passar por índice), então
+    // reflete a última escrita na hora — session.query() passa por um índice
+    // automático que atualiza de forma assíncrona e pode responder com dados
+    // de alguns segundos atrás logo depois de salvar um produto.
+    const entities = await session.advanced.loadStartingWith(ID_PREFIX, { pageSize: 1024 });
     res.setHeader('Cache-Control', 'no-store');
     res.status(200).json(entities.map(toApiShape));
   } catch (err) {

@@ -4,6 +4,7 @@ const { openSession } = require('./_lib/ravendb');
 const { applyCors, handlePreflight } = require('./_lib/cors');
 
 const COLLECTION = 'Products';
+const ID_PREFIX = 'products/';
 
 function slugify(text) {
   return text
@@ -84,7 +85,11 @@ module.exports = async (req, res) => {
 
   try {
     if (req.method === 'GET') {
-      const entities = await session.query({ collection: COLLECTION }).all();
+      // loadStartingWith lê direto do storage (sem passar por índice), então
+      // reflete a última escrita na hora — session.query() passa por um
+      // índice automático que atualiza de forma assíncrona e pode responder
+      // com dados de alguns segundos atrás logo depois de salvar um produto.
+      const entities = await session.advanced.loadStartingWith(ID_PREFIX, { pageSize: 1024 });
       return res.status(200).json(entities.map(toApiShape));
     }
 
