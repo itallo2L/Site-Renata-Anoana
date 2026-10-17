@@ -87,7 +87,11 @@
     background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;
     display:flex;flex-direction:column;
   }
-  .card .thumb{width:100%;aspect-ratio:1;background:var(--surface) center/cover no-repeat;}
+  .card .thumb{width:100%;aspect-ratio:1;background:var(--surface) center/cover no-repeat;position:relative;}
+  .card .thumb-note{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:11px;color:var(--text-muted);text-align:center;padding:0 8px;
+  }
   .card .body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:4px;}
   .card .title{font-weight:600;color:var(--text-title);font-size:15px;}
   .card .meta{font-size:12px;color:var(--text-muted);}
@@ -271,7 +275,7 @@
 
       var thumb = document.createElement('div');
       thumb.className = 'thumb';
-      if (product.image) thumb.style.backgroundImage = 'url(' + product.image + ')';
+      if (product.image) loadThumbImage(thumb, product.image);
       card.appendChild(thumb);
 
       var body = document.createElement('div');
@@ -300,6 +304,38 @@
       card.appendChild(actions);
       grid.appendChild(card);
     });
+  }
+
+  // A foto pode demorar alguns segundos a mais que o produto pra ficar
+  // disponível (commit acabou de sair). Pré-carrega antes de aplicar como
+  // background, tentando de novo algumas vezes em vez de mostrar vazio.
+  function loadThumbImage(thumb, src, attempt) {
+    attempt = attempt || 0;
+    var MAX_ATTEMPTS = 5;
+    function setNote(text) {
+      var note = thumb.querySelector('.thumb-note');
+      if (!note) {
+        note = document.createElement('span');
+        note.className = 'thumb-note';
+        thumb.appendChild(note);
+      }
+      note.textContent = text;
+    }
+    var probe = new Image();
+    probe.onload = function () {
+      thumb.style.backgroundImage = 'url(' + probe.src + ')';
+      var note = thumb.querySelector('.thumb-note');
+      if (note) note.remove();
+    };
+    probe.onerror = function () {
+      if (attempt < MAX_ATTEMPTS) {
+        setNote('Carregando foto...');
+        setTimeout(function () { loadThumbImage(thumb, src, attempt + 1); }, 1500 * (attempt + 1));
+      } else {
+        setNote('Foto indisponível');
+      }
+    };
+    probe.src = attempt === 0 ? src : src + (src.indexOf('?') === -1 ? '?' : '&') + 'retry=' + Date.now();
   }
 
   function escapeHtml(str) {

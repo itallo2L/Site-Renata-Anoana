@@ -1,4 +1,5 @@
 const { openSession } = require('./_lib/ravendb');
+const { toPublicImageUrl } = require('./_lib/github');
 
 const COLLECTION = 'Products';
 
@@ -14,7 +15,7 @@ function toApiShape(entity) {
     material: entity.material,
     category: entity.category,
     price: entity.price,
-    image: entity.image,
+    image: toPublicImageUrl(entity.image),
     size: entity.size,
   };
 }

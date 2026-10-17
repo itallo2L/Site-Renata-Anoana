@@ -57,4 +57,18 @@ async function putFile({ path, content, message, sha, isBase64 = false }) {
   });
 }
 
-module.exports = { getFile, putFile };
+// Monta a URL pública da imagem a partir do raw.githubusercontent.com em vez
+// do caminho relativo servido pelo GitHub Pages: o raw fica disponível quase
+// na hora do commit, sem esperar o build/deploy do Pages (que pode levar
+// minutos e deixa o produto visível sem foto por um tempo).
+function toPublicImageUrl(imagePath) {
+  if (!imagePath) return imagePath;
+  if (/^https?:\/\//i.test(imagePath)) return imagePath;
+  const owner = process.env.GITHUB_OWNER;
+  const repo = process.env.GITHUB_REPO;
+  const branch = process.env.GITHUB_BRANCH || 'main';
+  if (!owner || !repo) return imagePath;
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${imagePath}`;
+}
+
+module.exports = { getFile, putFile, toPublicImageUrl };

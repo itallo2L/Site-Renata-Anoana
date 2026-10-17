@@ -1,5 +1,5 @@
 const { isAuthenticated } = require('./_lib/auth');
-const { getFile, putFile } = require('./_lib/github');
+const { getFile, putFile, toPublicImageUrl } = require('./_lib/github');
 const { openSession } = require('./_lib/ravendb');
 const { applyCors, handlePreflight } = require('./_lib/cors');
 
@@ -36,7 +36,7 @@ function toApiShape(entity) {
     material: entity.material,
     category: entity.category,
     price: entity.price,
-    image: entity.image,
+    image: toPublicImageUrl(entity.image),
     size: entity.size,
   };
 }
@@ -114,16 +114,7 @@ module.exports = async (req, res) => {
       await session.store(doc, docId(id));
       session.advanced.getMetadataFor(doc)['@collection'] = COLLECTION;
       await session.saveChanges();
-      return res.status(201).json({
-        id,
-        title: doc.title,
-        description: doc.description,
-        material: doc.material,
-        category: doc.category,
-        price: doc.price,
-        image: doc.image,
-        size: doc.size,
-      });
+      return res.status(201).json(toApiShape(doc));
     }
 
     if (req.method === 'PUT') {

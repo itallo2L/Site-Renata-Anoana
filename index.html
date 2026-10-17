@@ -407,6 +407,11 @@
     overflow:hidden;
   }
   .card .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .card .media-note{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    padding:0 14px;text-align:center;
+    font-size:.72rem;color:var(--text-muted);
+  }
   .card .price.ask{font-weight:600;color:var(--text);}
   .card .body{
     padding:16px 18px 18px;
@@ -820,6 +825,52 @@
     });
   }
   setupLightbox();
+
+  // A foto pode levar alguns segundos a mais que o produto pra ficar
+  // disponível (commit no GitHub acabou de sair). Em vez de mostrar o ícone
+  // de imagem quebrada, tenta de novo algumas vezes antes de desistir.
+  // 'error' e 'load' não borbulham em <img>, então o listener precisa ser
+  // registrado na fase de captura pra funcionar via delegação no grid.
+  function setupImageRetry(){
+    var MAX_ATTEMPTS = 5;
+    function mediaNote(media){
+      var note = media.querySelector('.media-note');
+      if(!note){
+        note = document.createElement('span');
+        note.className = 'media-note';
+        media.appendChild(note);
+      }
+      return note;
+    }
+    grid.addEventListener('error', function(e){
+      var img = e.target;
+      if(!img || img.tagName !== 'IMG') return;
+      var media = img.closest('.media');
+      if(!media) return;
+      var attempts = Number(img.dataset.retryCount || 0);
+      var baseSrc = img.dataset.baseSrc || img.src;
+      img.dataset.baseSrc = baseSrc;
+      img.style.visibility = 'hidden';
+      if(attempts < MAX_ATTEMPTS){
+        img.dataset.retryCount = String(attempts + 1);
+        mediaNote(media).textContent = 'Carregando foto...';
+        setTimeout(function(){
+          img.src = baseSrc + (baseSrc.indexOf('?') === -1 ? '?' : '&') + 'retry=' + Date.now();
+        }, 1500 * (attempts + 1));
+      } else {
+        mediaNote(media).textContent = 'Foto indisponível no momento';
+      }
+    }, true);
+    grid.addEventListener('load', function(e){
+      var img = e.target;
+      if(!img || img.tagName !== 'IMG') return;
+      img.style.visibility = '';
+      var media = img.closest('.media');
+      var note = media && media.querySelector('.media-note');
+      if(note) note.remove();
+    }, true);
+  }
+  setupImageRetry();
 
   // Cadeia de fontes do catálogo, da mais atual pra mais resiliente:
   // 1) API da Vercel, que lê o GitHub ao vivo sem cache nenhum (instantâneo);
