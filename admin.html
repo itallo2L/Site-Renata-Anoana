@@ -240,6 +240,18 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="confirm-overlay" hidden>
+  <div class="modal" style="max-width:380px;">
+    <h2>Excluir produto</h2>
+    <p id="confirm-message" style="margin:0 0 4px;"></p>
+    <p class="hint">Essa ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn outline" id="btn-confirm-cancel">Cancelar</button>
+      <button type="button" class="btn danger" id="btn-confirm-delete">Excluir</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function () {
   var API_BASE = (function () {
@@ -489,13 +501,38 @@
     state.editingId = null;
   }
 
-  async function deleteProduct(product) {
-    if (!confirm('Excluir "' + product.title + '"? Essa ação não pode ser desfeita.')) return;
+  var confirmOverlay = document.getElementById('confirm-overlay');
+  var confirmMessage = document.getElementById('confirm-message');
+  var btnConfirmDelete = document.getElementById('btn-confirm-delete');
+  var productPendingDelete = null;
+
+  function openDeleteConfirm(product) {
+    productPendingDelete = product;
+    confirmMessage.textContent = 'Excluir "' + product.title + '"?';
+    confirmOverlay.hidden = false;
+  }
+
+  function closeDeleteConfirm() {
+    confirmOverlay.hidden = true;
+    productPendingDelete = null;
+    btnConfirmDelete.disabled = false;
+  }
+
+  function deleteProduct(product) {
+    openDeleteConfirm(product);
+  }
+
+  async function confirmDeleteProduct() {
+    var product = productPendingDelete;
+    if (!product) return;
+    btnConfirmDelete.disabled = true;
     try {
       await api('/api/products?id=' + encodeURIComponent(product.id), { method: 'DELETE' });
+      closeDeleteConfirm();
       showToast('Produto excluído');
       await loadProducts();
     } catch (err) {
+      btnConfirmDelete.disabled = false;
       showToast(err.message, true);
     }
   }
@@ -590,6 +627,12 @@
   document.getElementById('btn-cancel').onclick = closeModal;
   modalOverlay.addEventListener('click', function (e) {
     if (e.target === modalOverlay) closeModal();
+  });
+
+  document.getElementById('btn-confirm-cancel').onclick = closeDeleteConfirm;
+  document.getElementById('btn-confirm-delete').onclick = confirmDeleteProduct;
+  confirmOverlay.addEventListener('click', function (e) {
+    if (e.target === confirmOverlay) closeDeleteConfirm();
   });
 
   document.getElementById('btn-logout').onclick = async function () {
