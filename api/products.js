@@ -90,6 +90,7 @@ module.exports = async (req, res) => {
       // índice automático que atualiza de forma assíncrona e pode responder
       // com dados de alguns segundos atrás logo depois de salvar um produto.
       const entities = await session.advanced.loadStartingWith(ID_PREFIX, { pageSize: 1024 });
+      entities.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
       return res.status(200).json(entities.map(toApiShape));
     }
 
@@ -117,6 +118,7 @@ module.exports = async (req, res) => {
         image: imagePath,
         imageVersion: imageVersion || null,
         size: product.size || null,
+        updatedAt: Date.now(),
       };
       await session.store(doc, docId(id));
       session.advanced.getMetadataFor(doc)['@collection'] = COLLECTION;
@@ -143,6 +145,7 @@ module.exports = async (req, res) => {
         image: imagePath,
         imageVersion,
         price: normalizePrice(product.price, existing.price),
+        updatedAt: Date.now(),
       });
       await session.saveChanges();
       return res.status(200).json(toApiShape(existing));
