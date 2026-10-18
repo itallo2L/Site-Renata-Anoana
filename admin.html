@@ -81,6 +81,7 @@
 
   .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap;}
   .toolbar .count{color:var(--text-muted);font-size:13px;}
+  .toolbar .search-input{width:auto;flex:1;min-width:180px;max-width:280px;}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
   .card{
@@ -147,10 +148,11 @@
 
   <div class="wrap">
     <div class="toolbar">
+      <input type="search" id="search-input" class="search-input" placeholder="Buscar por nome..." />
       <span class="count" id="product-count"></span>
     </div>
     <div class="grid" id="product-grid"></div>
-    <div class="empty-state" id="empty-state" hidden>Nenhum produto cadastrado ainda.</div>
+    <div class="empty-state" id="empty-state" hidden></div>
   </div>
 </div>
 
@@ -219,7 +221,7 @@
     return ''; // mesmo domínio (dev local, previews etc.)
   })();
 
-  var state = { products: [], editingId: null };
+  var state = { products: [], editingId: null, search: '' };
 
   var loginView = document.getElementById('login-view');
   var appView = document.getElementById('app-view');
@@ -228,6 +230,7 @@
   var grid = document.getElementById('product-grid');
   var emptyState = document.getElementById('empty-state');
   var productCount = document.getElementById('product-count');
+  var searchInput = document.getElementById('search-input');
   var modalOverlay = document.getElementById('modal-overlay');
   var modalTitle = document.getElementById('modal-title');
   var productForm = document.getElementById('product-form');
@@ -264,12 +267,29 @@
     return data;
   }
 
+  function getFilteredProducts() {
+    var term = state.search.trim().toLowerCase();
+    if (!term) return state.products;
+    return state.products.filter(function (product) {
+      return product.title && product.title.toLowerCase().indexOf(term) !== -1;
+    });
+  }
+
   function renderProducts() {
     grid.innerHTML = '';
-    productCount.textContent = state.products.length + ' produto(s)';
-    emptyState.hidden = state.products.length > 0;
+    var term = state.search.trim();
+    var filtered = getFilteredProducts();
 
-    state.products.forEach(function (product) {
+    productCount.textContent = term
+      ? filtered.length + ' de ' + state.products.length + ' produto(s)'
+      : state.products.length + ' produto(s)';
+
+    emptyState.hidden = filtered.length > 0;
+    emptyState.textContent = term
+      ? 'Nenhum produto encontrado para "' + term + '".'
+      : 'Nenhum produto cadastrado ainda.';
+
+    filtered.forEach(function (product) {
       var card = document.createElement('div');
       card.className = 'card';
 
@@ -430,6 +450,10 @@
   });
 
   document.getElementById('btn-new-product').onclick = function () { openModal(null); };
+  searchInput.addEventListener('input', function () {
+    state.search = searchInput.value;
+    renderProducts();
+  });
   document.getElementById('btn-cancel').onclick = closeModal;
   modalOverlay.addEventListener('click', function (e) {
     if (e.target === modalOverlay) closeModal();
