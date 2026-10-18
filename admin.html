@@ -219,7 +219,7 @@
       <div class="row2">
         <div class="field">
           <label for="f-price">Preço (R$)</label>
-          <input id="f-price" type="number" min="0" step="0.01" placeholder="Opcional" />
+          <input id="f-price" type="text" inputmode="numeric" placeholder="Opcional" />
         </div>
         <div class="field">
           <label for="f-size">Tamanho</label>
@@ -281,6 +281,42 @@
     toast.textContent = message;
     document.body.appendChild(toast);
     setTimeout(function () { toast.remove(); }, 3500);
+  }
+
+  // Máscara de preço estilo "digitação da direita pra esquerda": cada
+  // dígito novo entra como centavo e empurra o resto pra esquerda (ex:
+  // digitar 2,1,4,3,2,7 vira 0,02 → 0,21 → 2,14 → 21,43 → 214,32 →
+  // 2.143,27). O valor cru (centavos) fica guardado em dataset.digits;
+  // beforeinput é interceptado por inteiro pra controlar isso sem depender
+  // da posição do cursor.
+  function formatPriceFromDigits(digits) {
+    if (!digits) return '';
+    var value = parseInt(digits, 10) / 100;
+    return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function setPriceDigits(input, digits) {
+    digits = digits.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(-15);
+    input.dataset.digits = digits;
+    input.value = formatPriceFromDigits(digits);
+  }
+
+  function priceInputToNumber(input) {
+    var digits = input.dataset.digits || '';
+    return digits ? parseInt(digits, 10) / 100 : null;
+  }
+
+  function setupPriceMask(input) {
+    input.addEventListener('beforeinput', function (e) {
+      e.preventDefault();
+      var digits = input.dataset.digits || '';
+      if (e.inputType === 'deleteContentBackward' || e.inputType === 'deleteContentForward' || e.inputType === 'deleteByCut') {
+        digits = digits.slice(0, -1);
+      } else if (e.data) {
+        digits += e.data.replace(/\D/g, '');
+      }
+      setPriceDigits(input, digits);
+    });
   }
 
   function fileToDataUrl(file) {
@@ -362,7 +398,7 @@
       body.innerHTML =
         '<div class="title">' + escapeHtml(product.title) + '</div>' +
         '<div class="meta">' + escapeHtml(product.category || '') + ' · ' + escapeHtml(product.material || '') + '</div>' +
-        '<div class="price">' + (product.price != null ? 'R$ ' + Number(product.price).toFixed(2) : 'Sem preço') + '</div>';
+        '<div class="price">' + (product.price != null ? 'R$ ' + Number(product.price).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'Sem preço') + '</div>';
       card.appendChild(body);
 
       var actions = document.createElement('div');
@@ -438,7 +474,10 @@
     document.getElementById('f-description').value = product ? product.description || '' : '';
     document.getElementById('f-category').value = product ? product.category || 'brincos' : 'brincos';
     document.getElementById('f-material').value = product ? product.material || 'Prata 925' : 'Prata 925';
-    document.getElementById('f-price').value = product && product.price != null ? product.price : '';
+    setPriceDigits(
+      document.getElementById('f-price'),
+      product && product.price != null ? Math.round(product.price * 100).toString() : ''
+    );
     document.getElementById('f-size').value = product && product.size ? product.size : '';
     currentImageHint.textContent = product && product.image ? 'Imagem atual: ' + product.image : '';
 
@@ -468,14 +507,13 @@
     saveBtn.disabled = true;
 
     try {
-      var priceValue = document.getElementById('f-price').value;
       var payload = {
         product: {
           title: document.getElementById('f-title').value.trim(),
           description: document.getElementById('f-description').value.trim(),
           category: document.getElementById('f-category').value,
           material: document.getElementById('f-material').value,
-          price: priceValue === '' ? null : Number(priceValue),
+          price: priceInputToNumber(document.getElementById('f-price')),
           size: document.getElementById('f-size').value.trim() || null,
         },
       };
@@ -509,6 +547,7 @@
   });
 
   document.getElementById('btn-new-product').onclick = function () { openModal(null); };
+  setupPriceMask(document.getElementById('f-price'));
   searchInput.addEventListener('input', function () {
     state.search = searchInput.value;
     renderProducts();
