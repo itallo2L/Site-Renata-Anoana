@@ -79,9 +79,16 @@
   .field{margin-bottom:14px;}
   .error-msg{color:var(--danger);font-size:13px;margin:8px 0 0;min-height:16px;}
 
-  .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap;}
-  .toolbar .count{color:var(--text-muted);font-size:13px;}
+  .toolbar{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin-bottom:18px;}
+  .toolbar .count{color:var(--text-muted);font-size:13px;margin-left:auto;white-space:nowrap;}
   .toolbar .search-input{width:auto;flex:1;min-width:180px;max-width:280px;}
+  .toolbar select{width:auto;padding:9px 10px;font-size:13px;}
+  .toolbar .filter-checkbox{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13px;color:var(--text);white-space:nowrap;
+  }
+  .toolbar .filter-checkbox input{width:auto;}
+  .toolbar .btn{padding:9px 12px;font-size:13px;}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
   .card{
@@ -149,6 +156,28 @@
   <div class="wrap">
     <div class="toolbar">
       <input type="search" id="search-input" class="search-input" placeholder="Buscar por nome..." />
+      <select id="filter-category">
+        <option value="">Todas as categorias</option>
+        <option value="brincos">Brincos</option>
+        <option value="aneis">Anéis</option>
+        <option value="pulseiras">Pulseiras</option>
+        <option value="braceletes">Braceletes</option>
+        <option value="conjuntos">Conjuntos</option>
+      </select>
+      <select id="filter-material">
+        <option value="">Todos os materiais</option>
+        <option value="Prata 925">Prata 925</option>
+        <option value="Prata Turca">Prata Turca</option>
+      </select>
+      <select id="filter-sort">
+        <option value="recent">Mais recentes</option>
+        <option value="name">Nome (A-Z)</option>
+        <option value="price-asc">Preço (menor-maior)</option>
+        <option value="price-desc">Preço (maior-menor)</option>
+      </select>
+      <label class="filter-checkbox"><input type="checkbox" id="filter-no-price" /> Sem preço</label>
+      <label class="filter-checkbox"><input type="checkbox" id="filter-no-photo" /> Sem foto</label>
+      <button class="btn outline" type="button" id="btn-clear-filters">Limpar filtros</button>
       <span class="count" id="product-count"></span>
     </div>
     <div class="grid" id="product-grid"></div>
@@ -221,7 +250,10 @@
     return ''; // mesmo domínio (dev local, previews etc.)
   })();
 
-  var state = { products: [], editingId: null, search: '' };
+  var state = {
+    products: [], editingId: null,
+    search: '', category: '', material: '', sort: 'recent', noPrice: false, noPhoto: false,
+  };
 
   var loginView = document.getElementById('login-view');
   var appView = document.getElementById('app-view');
@@ -231,6 +263,12 @@
   var emptyState = document.getElementById('empty-state');
   var productCount = document.getElementById('product-count');
   var searchInput = document.getElementById('search-input');
+  var filterCategory = document.getElementById('filter-category');
+  var filterMaterial = document.getElementById('filter-material');
+  var filterSort = document.getElementById('filter-sort');
+  var filterNoPrice = document.getElementById('filter-no-price');
+  var filterNoPhoto = document.getElementById('filter-no-photo');
+  var btnClearFilters = document.getElementById('btn-clear-filters');
   var modalOverlay = document.getElementById('modal-overlay');
   var modalTitle = document.getElementById('modal-title');
   var productForm = document.getElementById('product-form');
@@ -267,26 +305,47 @@
     return data;
   }
 
+  function hasActiveFilters() {
+    return !!(state.search.trim() || state.category || state.material || state.noPrice || state.noPhoto);
+  }
+
   function getFilteredProducts() {
     var term = state.search.trim().toLowerCase();
-    if (!term) return state.products;
-    return state.products.filter(function (product) {
-      return product.title && product.title.toLowerCase().indexOf(term) !== -1;
+    var list = state.products.filter(function (product) {
+      if (term && !(product.title && product.title.toLowerCase().indexOf(term) !== -1)) return false;
+      if (state.category && product.category !== state.category) return false;
+      if (state.material && product.material !== state.material) return false;
+      if (state.noPrice && product.price != null) return false;
+      if (state.noPhoto && product.image) return false;
+      return true;
     });
+
+    if (state.sort === 'name') {
+      list.sort(function (a, b) { return (a.title || '').localeCompare(b.title || '', 'pt-BR'); });
+    } else if (state.sort === 'price-asc') {
+      list.sort(function (a, b) {
+        return (a.price == null ? Infinity : a.price) - (b.price == null ? Infinity : b.price);
+      });
+    } else if (state.sort === 'price-desc') {
+      list.sort(function (a, b) {
+        return (b.price == null ? -Infinity : b.price) - (a.price == null ? -Infinity : a.price);
+      });
+    }
+    return list;
   }
 
   function renderProducts() {
     grid.innerHTML = '';
-    var term = state.search.trim();
+    var filtersActive = hasActiveFilters();
     var filtered = getFilteredProducts();
 
-    productCount.textContent = term
+    productCount.textContent = filtersActive
       ? filtered.length + ' de ' + state.products.length + ' produto(s)'
       : state.products.length + ' produto(s)';
 
     emptyState.hidden = filtered.length > 0;
-    emptyState.textContent = term
-      ? 'Nenhum produto encontrado para "' + term + '".'
+    emptyState.textContent = filtersActive
+      ? 'Nenhum produto encontrado com esses filtros.'
       : 'Nenhum produto cadastrado ainda.';
 
     filtered.forEach(function (product) {
@@ -452,6 +511,41 @@
   document.getElementById('btn-new-product').onclick = function () { openModal(null); };
   searchInput.addEventListener('input', function () {
     state.search = searchInput.value;
+    renderProducts();
+  });
+  filterCategory.addEventListener('change', function () {
+    state.category = filterCategory.value;
+    renderProducts();
+  });
+  filterMaterial.addEventListener('change', function () {
+    state.material = filterMaterial.value;
+    renderProducts();
+  });
+  filterSort.addEventListener('change', function () {
+    state.sort = filterSort.value;
+    renderProducts();
+  });
+  filterNoPrice.addEventListener('change', function () {
+    state.noPrice = filterNoPrice.checked;
+    renderProducts();
+  });
+  filterNoPhoto.addEventListener('change', function () {
+    state.noPhoto = filterNoPhoto.checked;
+    renderProducts();
+  });
+  btnClearFilters.addEventListener('click', function () {
+    state.search = '';
+    state.category = '';
+    state.material = '';
+    state.noPrice = false;
+    state.noPhoto = false;
+    state.sort = 'recent';
+    searchInput.value = '';
+    filterCategory.value = '';
+    filterMaterial.value = '';
+    filterSort.value = 'recent';
+    filterNoPrice.checked = false;
+    filterNoPhoto.checked = false;
     renderProducts();
   });
   document.getElementById('btn-cancel').onclick = closeModal;
