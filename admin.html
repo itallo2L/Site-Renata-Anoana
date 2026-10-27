@@ -259,7 +259,10 @@
     if (host === 'renataanoana.com.br' || host === 'www.renataanoana.com.br') {
       return 'https://api.renataanoana.com.br';
     }
-    return ''; // mesmo domínio (dev local, previews etc.)
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:3000'; // vercel dev
+    }
+    return ''; // mesmo domínio (previews etc.)
   })();
 
   var state = {

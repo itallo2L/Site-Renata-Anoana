@@ -9,6 +9,6 @@ module.exports = (req, res) => {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Método não permitido' });
   }
-  clearSessionCookie(res);
+  clearSessionCookie(res, req);
   res.status(200).json({ ok: true });
 };

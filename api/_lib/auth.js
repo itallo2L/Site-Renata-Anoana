@@ -59,19 +59,23 @@ function isAuthenticated(req) {
   return verifySessionToken(cookies[COOKIE_NAME]);
 }
 
-function setSessionCookie(res) {
-  const token = createSessionToken();
-  res.setHeader(
-    'Set-Cookie',
-    `${COOKIE_NAME}=${token}; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=${MAX_AGE_SECONDS}`
-  );
+function isLocalDevRequest(req) {
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(req && req.headers && req.headers.origin || '');
 }
 
-function clearSessionCookie(res) {
-  res.setHeader(
-    'Set-Cookie',
-    `${COOKIE_NAME}=; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=0`
-  );
+function setSessionCookie(res, req) {
+  const token = createSessionToken();
+  const attrs = isLocalDevRequest(req)
+    ? 'HttpOnly; SameSite=Lax; Path=/'
+    : 'HttpOnly; Secure; SameSite=None; Path=/';
+  res.setHeader('Set-Cookie', `${COOKIE_NAME}=${token}; ${attrs}; Max-Age=${MAX_AGE_SECONDS}`);
+}
+
+function clearSessionCookie(res, req) {
+  const attrs = isLocalDevRequest(req)
+    ? 'HttpOnly; SameSite=Lax; Path=/'
+    : 'HttpOnly; Secure; SameSite=None; Path=/';
+  res.setHeader('Set-Cookie', `${COOKIE_NAME}=; ${attrs}; Max-Age=0`);
 }
 
 module.exports = { isAuthenticated, setSessionCookie, clearSessionCookie };

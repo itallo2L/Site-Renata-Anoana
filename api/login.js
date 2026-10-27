@@ -26,6 +26,6 @@ module.exports = async (req, res) => {
     return res.status(401).json({ error: 'Senha incorreta' });
   }
 
-  setSessionCookie(res);
+  setSessionCookie(res, req);
   res.status(200).json({ ok: true });
 };
