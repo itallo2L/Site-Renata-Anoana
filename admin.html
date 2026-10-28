@@ -117,9 +117,21 @@
   }
   .modal h2{font-size:22px;margin-bottom:18px;}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .field-inline{display:flex;gap:8px;}
+  .field-inline select,.field-inline input{flex:1;min-width:0;}
+  .field-inline .btn{flex:none;white-space:nowrap;padding:10px 14px;}
   .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;}
   .hint{font-size:12px;color:var(--text-muted);margin-top:4px;}
   .empty-state{text-align:center;padding:60px 20px;color:var(--text-muted);}
+  .category-row{
+    display:flex;align-items:center;gap:10px;padding:10px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .category-row:last-child{border-bottom:none;}
+  .category-row .name{font-weight:600;flex:1;}
+  .category-row .count{color:var(--text-muted);font-size:12px;}
+  .category-row .reassign{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap;}
+  .category-row .reassign select{width:auto;flex:1;min-width:140px;}
   .grid-status{
     grid-column:1/-1;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -188,11 +200,6 @@
       <input type="search" id="search-input" class="search-input" placeholder="Buscar por nome..." />
       <select id="filter-category">
         <option value="">Todas as categorias</option>
-        <option value="brincos">Brincos</option>
-        <option value="aneis">Anéis</option>
-        <option value="pulseiras">Pulseiras</option>
-        <option value="braceletes">Braceletes</option>
-        <option value="conjuntos">Conjuntos</option>
       </select>
       <select id="filter-material">
         <option value="">Todos os materiais</option>
@@ -208,6 +215,7 @@
       <label class="filter-checkbox"><input type="checkbox" id="filter-no-price" /> Sem preço</label>
       <label class="filter-checkbox"><input type="checkbox" id="filter-no-photo" /> Sem foto</label>
       <button class="btn outline" type="button" id="btn-clear-filters">Limpar filtros</button>
+      <button class="btn outline" type="button" id="btn-manage-categories">Gerenciar categorias</button>
       <span class="count" id="product-count"></span>
     </div>
     <div class="grid" id="product-grid"></div>
@@ -229,14 +237,18 @@
       </div>
       <div class="row2">
         <div class="field">
-          <label for="f-category">Categoria</label>
-          <select id="f-category">
-            <option value="brincos">Brincos</option>
-            <option value="aneis">Anéis</option>
-            <option value="pulseiras">Pulseiras</option>
-            <option value="braceletes">Braceletes</option>
-            <option value="conjuntos">Conjuntos</option>
-          </select>
+          <label for="f-category">Categoria *</label>
+          <div class="field-inline" id="category-select-row">
+            <select id="f-category" required>
+              <option value="">Selecione...</option>
+            </select>
+            <button type="button" class="btn outline" id="btn-new-category">+ Nova</button>
+          </div>
+          <div class="field-inline" id="new-category-row" hidden>
+            <input id="new-category-input" placeholder="Nome da nova categoria" />
+            <button type="button" class="btn outline" id="btn-new-category-cancel">Cancelar</button>
+          </div>
+          <p class="hint" id="new-category-hint" hidden>A categoria é criada ao salvar o produto.</p>
         </div>
         <div class="field">
           <label for="f-material">Material</label>
@@ -270,6 +282,17 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="categories-overlay" hidden>
+  <div class="modal" style="max-width:460px;">
+    <h2>Gerenciar categorias</h2>
+    <p class="hint" style="margin:-4px 0 14px;">Excluir uma categoria pede pra mover os produtos dela pra outra antes.</p>
+    <div id="categories-list"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn outline" id="btn-categories-close">Fechar</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="confirm-overlay" hidden>
   <div class="modal" style="max-width:380px;">
     <h2>Excluir produto</h2>
@@ -298,7 +321,173 @@
   var state = {
     products: [], editingId: null,
     search: '', category: '', material: '', sort: 'recent', noPrice: false, noPhoto: false,
+    // categorias cadastradas (fonte: /api/categories) — uma categoria existe
+    // por si só, independente de ter produto ou não.
+    categories: [],
   };
+
+  function categoryLabel(slug) {
+    if (!slug) return '';
+    var found = state.categories.find(function (c) { return c.slug === slug; });
+    if (found) return found.label;
+    // produto antigo com categoria sem cadastro correspondente: usa um rótulo
+    // derivado do slug só pra não quebrar a exibição.
+    return slug.split('-').map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
+  }
+
+  // Converte o texto digitado pelo usuário no slug da categoria (sem acento,
+  // minúsculo, espaços viram hífen), pra checar duplicidade antes de
+  // chamar a API (que faz a mesma normalização do lado do servidor).
+  function slugify(text) {
+    return String(text || '')
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function getKnownCategorySlugs() {
+    return state.categories.map(function (c) { return c.slug; }).sort(function (a, b) {
+      return categoryLabel(a).localeCompare(categoryLabel(b), 'pt-BR');
+    });
+  }
+
+  function populateCategoryOptions() {
+    var slugs = getKnownCategorySlugs();
+
+    var previousValue = filterCategory.value;
+    filterCategory.innerHTML = '<option value="">Todas as categorias</option>' +
+      slugs.map(function (s) {
+        return '<option value="' + escapeHtml(s) + '">' + escapeHtml(categoryLabel(s)) + '</option>';
+      }).join('');
+    filterCategory.value = slugs.indexOf(previousValue) !== -1 ? previousValue : '';
+
+    populateFCategorySelect();
+  }
+
+  // Preenche o select de categoria do modal de produto, tentando manter a
+  // categoria selecionada (ou a passada em selectedSlug) se ela ainda existir.
+  function populateFCategorySelect(selectedSlug) {
+    var select = document.getElementById('f-category');
+    var slugs = getKnownCategorySlugs();
+    var current = selectedSlug !== undefined ? selectedSlug : select.value;
+    select.innerHTML = '<option value="">Selecione...</option>' +
+      slugs.map(function (s) {
+        return '<option value="' + escapeHtml(s) + '">' + escapeHtml(categoryLabel(s)) + '</option>';
+      }).join('');
+    select.value = slugs.indexOf(current) !== -1 ? current : '';
+  }
+
+  // Alterna o campo de categoria do modal entre "escolher uma existente"
+  // (select) e "digitar uma nova" (input) — a categoria nova só é criada de
+  // fato quando o produto é salvo (ver productForm submit).
+  function setCategoryMode(isNew) {
+    document.getElementById('category-select-row').hidden = isNew;
+    document.getElementById('new-category-row').hidden = !isNew;
+    document.getElementById('new-category-hint').hidden = !isNew;
+    document.getElementById('f-category').required = !isNew;
+    var input = document.getElementById('new-category-input');
+    input.required = isNew;
+    if (!isNew) input.value = '';
+  }
+
+  function getCategoryCounts() {
+    var counts = {};
+    state.products.forEach(function (p) {
+      if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+    return counts;
+  }
+
+  function renderCategoriesManager() {
+    var counts = getCategoryCounts();
+    var slugs = getKnownCategorySlugs();
+    var list = document.getElementById('categories-list');
+
+    if (!slugs.length) {
+      list.innerHTML = '<p class="hint">Nenhuma categoria cadastrada ainda.</p>';
+      return;
+    }
+
+    list.innerHTML = slugs.map(function (slug) {
+      var count = counts[slug] || 0;
+      return '<div class="category-row" data-slug="' + escapeHtml(slug) + '">' +
+        '<span class="name">' + escapeHtml(categoryLabel(slug)) + '</span>' +
+        '<span class="count">' + count + ' produto(s)</span>' +
+        '<button type="button" class="btn danger" data-action="delete-category">Excluir</button>' +
+        '</div>';
+    }).join('');
+
+    list.querySelectorAll('[data-action="delete-category"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        startCategoryReassign(btn.closest('.category-row'));
+      });
+    });
+  }
+
+  function startCategoryReassign(row) {
+    var slug = row.getAttribute('data-slug');
+    var counts = getCategoryCounts();
+    var count = counts[slug] || 0;
+
+    // sem produto nessa categoria: não tem o que mover, exclui direto.
+    if (!count) {
+      deleteCategory(slug, null, row);
+      return;
+    }
+
+    var others = getKnownCategorySlugs().filter(function (s) { return s !== slug; });
+
+    if (!others.length) {
+      row.innerHTML = '<div class="reassign">' +
+        '<span>Cadastre outra categoria antes de excluir a última.</span>' +
+        '<button type="button" class="btn outline" data-action="cancel-reassign">Voltar</button>' +
+        '</div>';
+      row.querySelector('[data-action="cancel-reassign"]').addEventListener('click', renderCategoriesManager);
+      return;
+    }
+
+    var options = others.map(function (s) {
+      return '<option value="' + escapeHtml(s) + '">' + escapeHtml(categoryLabel(s)) + '</option>';
+    }).join('');
+
+    row.innerHTML = '<div class="reassign">' +
+      '<span>Mover ' + count + ' produto(s) de "' + escapeHtml(categoryLabel(slug)) + '" para:</span>' +
+      '<select class="reassign-target">' + options + '</select>' +
+      '<button type="button" class="btn outline" data-action="cancel-reassign">Cancelar</button>' +
+      '<button type="button" class="btn danger" data-action="confirm-reassign">Confirmar</button>' +
+      '</div>';
+
+    row.querySelector('[data-action="cancel-reassign"]').addEventListener('click', renderCategoriesManager);
+    row.querySelector('[data-action="confirm-reassign"]').addEventListener('click', function () {
+      var target = row.querySelector('.reassign-target').value;
+      deleteCategory(slug, target, row);
+    });
+  }
+
+  // newSlug é null quando a categoria não tem produto nenhum (nada pra mover).
+  async function deleteCategory(oldSlug, newSlug, row) {
+    row.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+    var affected = newSlug ? state.products.filter(function (p) { return p.category === oldSlug; }) : [];
+    try {
+      for (var i = 0; i < affected.length; i++) {
+        await api('/api/products?id=' + encodeURIComponent(affected[i].id), {
+          method: 'PUT',
+          body: JSON.stringify({ product: { category: newSlug } }),
+        });
+      }
+      await api('/api/categories?slug=' + encodeURIComponent(oldSlug), { method: 'DELETE' });
+      showToast(affected.length
+        ? 'Categoria excluída, ' + affected.length + ' produto(s) movido(s) para "' + categoryLabel(newSlug) + '"'
+        : 'Categoria excluída');
+      await loadCategories();
+      if (affected.length) { await loadProducts(); } else { populateCategoryOptions(); renderProducts(); }
+      renderCategoriesManager();
+    } catch (err) {
+      showToast(err.message, true);
+      row.querySelectorAll('button').forEach(function (b) { b.disabled = false; });
+    }
+  }
 
   var bootView = document.getElementById('boot-view');
   var loginView = document.getElementById('login-view');
@@ -443,7 +632,7 @@
       body.className = 'body';
       body.innerHTML =
         '<div class="title">' + escapeHtml(product.title) + '</div>' +
-        '<div class="meta">' + escapeHtml(product.category || '') + ' · ' + escapeHtml(product.material || '') + '</div>' +
+        '<div class="meta">' + escapeHtml(categoryLabel(product.category)) + ' · ' + escapeHtml(product.material || '') + '</div>' +
         '<div class="price">' + (product.price != null ? 'R$ ' + Number(product.price).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'Sem preço') + '</div>';
       card.appendChild(body);
 
@@ -505,6 +694,10 @@
     });
   }
 
+  async function loadCategories() {
+    state.categories = await api('/api/categories');
+  }
+
   async function loadProducts() {
     grid.innerHTML = '<div class="grid-status"><span class="spinner" aria-hidden="true"></span><p>Carregando produtos...</p></div>';
     emptyState.hidden = true;
@@ -514,6 +707,7 @@
       grid.innerHTML = '<div class="grid-status"><p>Não foi possível carregar os produtos.</p></div>';
       throw e;
     }
+    populateCategoryOptions();
     renderProducts();
   }
 
@@ -525,7 +719,8 @@
 
     document.getElementById('f-title').value = product ? product.title : '';
     document.getElementById('f-description').value = product ? product.description || '' : '';
-    document.getElementById('f-category').value = product ? product.category || 'brincos' : 'brincos';
+    setCategoryMode(false);
+    populateFCategorySelect(product ? product.category : '');
     document.getElementById('f-material').value = product ? product.material || 'Prata 925' : 'Prata 925';
     setPriceDigits(
       document.getElementById('f-price'),
@@ -578,6 +773,32 @@
     }
   }
 
+  // Decide a categoria do produto a partir do modo atual do campo: no modo
+  // select, usa o valor escolhido; no modo "nova categoria", cria a
+  // categoria agora (ou reaproveita uma já existente com o mesmo nome) e
+  // devolve o slug dela.
+  async function resolveCategorySlug() {
+    var isNewMode = document.getElementById('new-category-row').hidden === false;
+
+    if (!isNewMode) {
+      var categorySlug = document.getElementById('f-category').value;
+      if (!categorySlug) throw new Error('Selecione uma categoria');
+      return categorySlug;
+    }
+
+    var label = document.getElementById('new-category-input').value.trim();
+    if (!label) throw new Error('Informe o nome da nova categoria');
+    var slug = slugify(label);
+    if (!slug) throw new Error('Nome de categoria inválido');
+
+    var existing = state.categories.find(function (c) { return c.slug === slug; });
+    if (existing) return existing.slug;
+
+    var created = await api('/api/categories', { method: 'POST', body: JSON.stringify({ label: label }) });
+    state.categories.push(created);
+    return created.slug;
+  }
+
   productForm.addEventListener('submit', async function (e) {
     e.preventDefault();
     formError.textContent = '';
@@ -585,11 +806,13 @@
     saveBtn.disabled = true;
 
     try {
+      var categorySlug = await resolveCategorySlug();
+
       var payload = {
         product: {
           title: document.getElementById('f-title').value.trim(),
           description: document.getElementById('f-description').value.trim(),
-          category: document.getElementById('f-category').value,
+          category: categorySlug,
           material: document.getElementById('f-material').value,
           price: priceInputToNumber(document.getElementById('f-price')),
           size: document.getElementById('f-size').value.trim() || null,
@@ -670,6 +893,33 @@
     if (e.target === modalOverlay) closeModal();
   });
 
+  // "+ Nova" categoria dentro do modal de produto: só troca pro modo de
+  // digitar o nome. A categoria em si é criada (ou reaproveitada, se já
+  // existir com esse nome) só quando o produto é salvo — ver productForm submit.
+  var newCategoryInput = document.getElementById('new-category-input');
+  document.getElementById('btn-new-category').onclick = function () {
+    setCategoryMode(true);
+    newCategoryInput.focus();
+  };
+  document.getElementById('btn-new-category-cancel').onclick = function () {
+    setCategoryMode(false);
+  };
+  newCategoryInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { e.preventDefault(); setCategoryMode(false); }
+  });
+
+  var categoriesOverlay = document.getElementById('categories-overlay');
+  document.getElementById('btn-manage-categories').onclick = function () {
+    renderCategoriesManager();
+    categoriesOverlay.hidden = false;
+  };
+  document.getElementById('btn-categories-close').onclick = function () {
+    categoriesOverlay.hidden = true;
+  };
+  categoriesOverlay.addEventListener('click', function (e) {
+    if (e.target === categoriesOverlay) categoriesOverlay.hidden = true;
+  });
+
   document.getElementById('btn-confirm-cancel').onclick = closeDeleteConfirm;
   document.getElementById('btn-confirm-delete').onclick = confirmDeleteProduct;
   confirmOverlay.addEventListener('click', function (e) {
@@ -732,6 +982,7 @@
     bootView.hidden = true;
     loginView.hidden = true;
     appView.hidden = false;
+    await loadCategories();
     await loadProducts();
   }
 
