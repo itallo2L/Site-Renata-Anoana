@@ -102,6 +102,10 @@
   }
   .card .body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:4px;}
   .card .title{font-weight:600;color:var(--text-title);font-size:15px;}
+  .draft-badge{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    color:#8a5a00;background:#fff1cc;border-radius:4px;padding:2px 6px;vertical-align:middle;margin-left:4px;
+  }
   .card .meta{font-size:12px;color:var(--text-muted);}
   .card .price{font-weight:700;color:var(--accent);font-size:14px;}
   .card .actions{display:flex;gap:8px;padding:0 14px 14px;}
@@ -120,7 +124,7 @@
   .field-inline{display:flex;gap:8px;}
   .field-inline select,.field-inline input{flex:1;min-width:0;}
   .field-inline .btn{flex:none;white-space:nowrap;padding:10px 14px;}
-  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;flex-wrap:wrap;}
   .hint{font-size:12px;color:var(--text-muted);margin-top:4px;}
   .empty-state{text-align:center;padding:60px 20px;color:var(--text-muted);}
   .category-row{
@@ -214,6 +218,7 @@
       </select>
       <label class="filter-checkbox"><input type="checkbox" id="filter-no-price" /> Sem preço</label>
       <label class="filter-checkbox"><input type="checkbox" id="filter-no-photo" /> Sem foto</label>
+      <label class="filter-checkbox"><input type="checkbox" id="filter-draft-only" /> Somente rascunhos</label>
       <button class="btn outline" type="button" id="btn-clear-filters">Limpar filtros</button>
       <button class="btn outline" type="button" id="btn-manage-categories">Gerenciar categorias</button>
       <span class="count" id="product-count"></span>
@@ -226,6 +231,7 @@
 <div class="modal-overlay" id="modal-overlay" hidden>
   <div class="modal">
     <h2 id="modal-title">Novo produto</h2>
+    <p class="hint" id="modal-status-hint" hidden></p>
     <form id="product-form">
       <div class="field">
         <label for="f-title">Título *</label>
@@ -276,7 +282,8 @@
       <p class="error-msg" id="form-error"></p>
       <div class="modal-actions">
         <button type="button" class="btn outline" id="btn-cancel">Cancelar</button>
-        <button type="submit" class="btn primary" id="btn-save">Salvar</button>
+        <button type="submit" class="btn outline" id="btn-save-draft" data-status="draft">Salvar rascunho</button>
+        <button type="submit" class="btn primary" id="btn-save-publish" data-status="published">Publicar</button>
       </div>
     </form>
   </div>
@@ -320,7 +327,7 @@
 
   var state = {
     products: [], editingId: null,
-    search: '', category: '', material: '', sort: 'recent', noPrice: false, noPhoto: false,
+    search: '', category: '', material: '', sort: 'recent', noPrice: false, noPhoto: false, draftOnly: false,
     // categorias cadastradas (fonte: /api/categories) — uma categoria existe
     // por si só, independente de ter produto ou não.
     categories: [],
@@ -503,9 +510,11 @@
   var filterSort = document.getElementById('filter-sort');
   var filterNoPrice = document.getElementById('filter-no-price');
   var filterNoPhoto = document.getElementById('filter-no-photo');
+  var filterDraftOnly = document.getElementById('filter-draft-only');
   var btnClearFilters = document.getElementById('btn-clear-filters');
   var modalOverlay = document.getElementById('modal-overlay');
   var modalTitle = document.getElementById('modal-title');
+  var modalStatusHint = document.getElementById('modal-status-hint');
   var productForm = document.getElementById('product-form');
   var formError = document.getElementById('form-error');
   var currentImageHint = document.getElementById('current-image-hint');
@@ -577,7 +586,7 @@
   }
 
   function hasActiveFilters() {
-    return !!(state.search.trim() || state.category || state.material || state.noPrice || state.noPhoto);
+    return !!(state.search.trim() || state.category || state.material || state.noPrice || state.noPhoto || state.draftOnly);
   }
 
   function getFilteredProducts() {
@@ -588,6 +597,7 @@
       if (state.material && product.material !== state.material) return false;
       if (state.noPrice && product.price != null) return false;
       if (state.noPhoto && product.image) return false;
+      if (state.draftOnly && product.status !== 'draft') return false;
       return true;
     });
 
@@ -631,7 +641,8 @@
       var body = document.createElement('div');
       body.className = 'body';
       body.innerHTML =
-        '<div class="title">' + escapeHtml(product.title) + '</div>' +
+        '<div class="title">' + escapeHtml(product.title) +
+        (product.status === 'draft' ? ' <span class="draft-badge">Rascunho</span>' : '') + '</div>' +
         '<div class="meta">' + escapeHtml(categoryLabel(product.category)) + ' · ' + escapeHtml(product.material || '') + '</div>' +
         '<div class="price">' + (product.price != null ? 'R$ ' + Number(product.price).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'Sem preço') + '</div>';
       card.appendChild(body);
@@ -729,6 +740,13 @@
     document.getElementById('f-size').value = product && product.size ? product.size : '';
     currentImageHint.textContent = product && product.image ? 'Imagem atual: ' + product.image : '';
 
+    if (product && product.status === 'draft') {
+      modalStatusHint.textContent = 'Este produto está salvo como rascunho e não aparece no site.';
+      modalStatusHint.hidden = false;
+    } else {
+      modalStatusHint.hidden = true;
+    }
+
     modalOverlay.hidden = false;
   }
 
@@ -812,11 +830,15 @@
     return created.slug;
   }
 
+  var btnSaveDraft = document.getElementById('btn-save-draft');
+  var btnSavePublish = document.getElementById('btn-save-publish');
+
   productForm.addEventListener('submit', async function (e) {
     e.preventDefault();
     formError.textContent = '';
-    var saveBtn = document.getElementById('btn-save');
-    saveBtn.disabled = true;
+    var status = (e.submitter && e.submitter.dataset.status) || 'published';
+    btnSaveDraft.disabled = true;
+    btnSavePublish.disabled = true;
 
     try {
       var categorySlug = await resolveCategorySlug();
@@ -829,6 +851,7 @@
           material: document.getElementById('f-material').value,
           price: priceInputToNumber(document.getElementById('f-price')),
           size: document.getElementById('f-size').value.trim() || null,
+          status: status,
         },
       };
 
@@ -842,13 +865,13 @@
           method: 'PUT',
           body: JSON.stringify(payload),
         });
-        showToast('Produto atualizado');
+        showToast(status === 'draft' ? 'Rascunho atualizado' : 'Produto atualizado e publicado');
       } else {
         await api('/api/products', {
           method: 'POST',
           body: JSON.stringify(payload),
         });
-        showToast('Produto criado');
+        showToast(status === 'draft' ? 'Rascunho criado' : 'Produto criado e publicado');
       }
 
       closeModal();
@@ -856,7 +879,8 @@
     } catch (err) {
       formError.textContent = err.message;
     } finally {
-      saveBtn.disabled = false;
+      btnSaveDraft.disabled = false;
+      btnSavePublish.disabled = false;
     }
   });
 
@@ -886,12 +910,17 @@
     state.noPhoto = filterNoPhoto.checked;
     renderProducts();
   });
+  filterDraftOnly.addEventListener('change', function () {
+    state.draftOnly = filterDraftOnly.checked;
+    renderProducts();
+  });
   btnClearFilters.addEventListener('click', function () {
     state.search = '';
     state.category = '';
     state.material = '';
     state.noPrice = false;
     state.noPhoto = false;
+    state.draftOnly = false;
     state.sort = 'recent';
     searchInput.value = '';
     filterCategory.value = '';
@@ -899,6 +928,7 @@
     filterSort.value = 'recent';
     filterNoPrice.checked = false;
     filterNoPhoto.checked = false;
+    filterDraftOnly.checked = false;
     renderProducts();
   });
   document.getElementById('btn-cancel').onclick = closeModal;
