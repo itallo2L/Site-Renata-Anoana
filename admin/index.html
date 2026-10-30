@@ -737,6 +737,19 @@
     state.editingId = null;
   }
 
+  // Fecha o overlay só se o clique começou E terminou nele mesmo — evita
+  // fechar quando o usuário arrasta o mouse (ex. selecionando texto num
+  // campo) e solta o botão fora do conteúdo do modal.
+  function closeOverlayOnOutsideClick(overlay, onClose) {
+    var mouseDownOnOverlay = false;
+    overlay.addEventListener('mousedown', function (e) {
+      mouseDownOnOverlay = (e.target === overlay);
+    });
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay && mouseDownOnOverlay) onClose();
+    });
+  }
+
   var confirmOverlay = document.getElementById('confirm-overlay');
   var confirmMessage = document.getElementById('confirm-message');
   var btnConfirmDelete = document.getElementById('btn-confirm-delete');
@@ -889,9 +902,7 @@
     renderProducts();
   });
   document.getElementById('btn-cancel').onclick = closeModal;
-  modalOverlay.addEventListener('click', function (e) {
-    if (e.target === modalOverlay) closeModal();
-  });
+  closeOverlayOnOutsideClick(modalOverlay, closeModal);
 
   // "+ Nova" categoria dentro do modal de produto: só troca pro modo de
   // digitar o nome. A categoria em si é criada (ou reaproveitada, se já
@@ -916,15 +927,13 @@
   document.getElementById('btn-categories-close').onclick = function () {
     categoriesOverlay.hidden = true;
   };
-  categoriesOverlay.addEventListener('click', function (e) {
-    if (e.target === categoriesOverlay) categoriesOverlay.hidden = true;
+  closeOverlayOnOutsideClick(categoriesOverlay, function () {
+    categoriesOverlay.hidden = true;
   });
 
   document.getElementById('btn-confirm-cancel').onclick = closeDeleteConfirm;
   document.getElementById('btn-confirm-delete').onclick = confirmDeleteProduct;
-  confirmOverlay.addEventListener('click', function (e) {
-    if (e.target === confirmOverlay) closeDeleteConfirm();
-  });
+  closeOverlayOnOutsideClick(confirmOverlay, closeDeleteConfirm);
 
   var logoutBtn = document.getElementById('btn-logout');
   var logoutSpinner = document.getElementById('logout-spinner');
