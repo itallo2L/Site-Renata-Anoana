@@ -44,7 +44,8 @@ function toApiShape(entity) {
 }
 
 function normalizeStatus(value, fallback) {
-  return value === 'draft' ? 'draft' : (fallback || 'published');
+  if (value === 'draft' || value === 'published') return value;
+  return fallback || 'published';
 }
 
 async function saveImage(productId, imageDataUrl) {
