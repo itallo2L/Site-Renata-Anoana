@@ -39,7 +39,12 @@ function toApiShape(entity) {
     price: entity.price,
     image: toPublicImageUrl(entity.image, entity.imageVersion),
     size: entity.size,
+    status: entity.status === 'draft' ? 'draft' : 'published',
   };
+}
+
+function normalizeStatus(value, fallback) {
+  return value === 'draft' ? 'draft' : (fallback || 'published');
 }
 
 async function saveImage(productId, imageDataUrl) {
@@ -118,6 +123,7 @@ module.exports = async (req, res) => {
         image: imagePath,
         imageVersion: imageVersion || null,
         size: product.size || null,
+        status: normalizeStatus(product.status),
         updatedAt: Date.now(),
       };
       await session.store(doc, docId(id));
@@ -145,6 +151,7 @@ module.exports = async (req, res) => {
         image: imagePath,
         imageVersion,
         price: normalizePrice(product.price, existing.price),
+        status: normalizeStatus(product.status, existing.status),
         updatedAt: Date.now(),
       });
       await session.saveChanges();

@@ -39,9 +39,10 @@ module.exports = async (req, res) => {
     // automático que atualiza de forma assíncrona e pode responder com dados
     // de alguns segundos atrás logo depois de salvar um produto.
     const entities = await session.advanced.loadStartingWith(ID_PREFIX, { pageSize: 1024 });
-    entities.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    const published = entities.filter((e) => e.status !== 'draft');
+    published.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
     res.setHeader('Cache-Control', 'no-store');
-    res.status(200).json(entities.map(toApiShape));
+    res.status(200).json(published.map(toApiShape));
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Não foi possível carregar o catálogo' });
