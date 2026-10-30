@@ -47,7 +47,7 @@ O site trabalha com 7 categorias: Colares, Anéis, Pulseiras, Braceletes, Brinco
 
 > ⚠️ **Os preços das 8 primeiras peças foram estimados**, já que não foram informados pela Renata Anoana. Confirme os valores reais antes de divulgar o site.
 
-**Material:** cada card mostra o material abaixo do nome da peça. O padrão é "Prata Turca"; estão em "Prata 925" o Conjunto Coral Vermelho, o Conjunto Pedra Verde, o Brinco Gota Turquesa, o Bracelete Prata Lisa, o Trio de Anéis Olho de Tigre, os Braceletes Quadrados e Argolinhas e o Brinco Topázio Azul. No painel, escolha o material no campo "Material" do formulário (as opções ficam em `MATERIALS`, no `admin.html`). No `index.html`, o texto fica em cada `<p class="material">`. Os filtros do catálogo (e o menu do celular) também têm "Prata 925" e "Prata Turca", no fim da lista de categorias: eles mostram as peças pelo texto do material de cada card. No painel, o site exportado ganha um filtro para cada material de `MATERIALS`.
+**Material:** cada card mostra o material abaixo do nome da peça. O padrão é "Prata Turca"; estão em "Prata 925" o Conjunto Coral Vermelho, o Conjunto Pedra Verde, o Brinco Gota Turquesa, o Bracelete Prata Lisa, o Trio de Anéis Olho de Tigre, os Braceletes Quadrados e Argolinhas e o Brinco Topázio Azul. No painel, escolha o material no campo "Material" do formulário (as opções ficam em `MATERIALS`, no `admin/index.html`). No `index.html`, o texto fica em cada `<p class="material">`. Os filtros do catálogo (e o menu do celular) também têm "Prata 925" e "Prata Turca", no fim da lista de categorias: eles mostram as peças pelo texto do material de cada card. No painel, o site exportado ganha um filtro para cada material de `MATERIALS`.
 
 As 10 últimas peças da tabela são bijuterias. **"Consulte o valor":** no painel, se o preço ficar em branco, o card mostra "Consulte o valor", e o botão "Consultar valor" abre o WhatsApp perguntando valor e disponibilidade da peça. Quando o catálogo do painel já estava salvo no navegador, as peças novas do catálogo original entram uma única vez; se forem removidas, não voltam.
 
@@ -62,18 +62,18 @@ As 10 últimas peças da tabela são bijuterias. **"Consulte o valor":** no pain
 Abra o `index.html` em qualquer editor de texto (Bloco de Notas, VS Code etc.).
 
 - **Trocar nome, preço ou texto de um produto:** procure pelo título do produto (ex.: `Anel Rosa Vermelha`) e edite o texto dentro das tags `<h3>` e `<span class="price">`.
-- **Trocar o número de WhatsApp:** procure por `556296514773` (aparece no cabeçalho, no menu do celular, no início, no rodapé, no botão flutuante e em cada produto) e substitua em todas as ocorrências. Faça o mesmo no `admin.html`.
+- **Trocar o número de WhatsApp:** procure por `556296514773` (aparece no cabeçalho, no menu do celular, no início, no rodapé, no botão flutuante e em cada produto) e substitua em todas as ocorrências. Faça o mesmo no `admin/index.html`.
 - **Trocar uma foto de produto:** é preciso converter a nova imagem para o formato base64 e substituir o conteúdo depois de `data:image/jpeg;base64,` daquele card. Se não tiver como fazer isso manualmente, me envie a foto nova que eu atualizo o arquivo.
-- **Foto de destaque do início:** fica no bloco `hero-media` (`data:image/jpeg;base64,...`) e é fixa, ou seja, não depende do catálogo. Para trocar, substitua o base64 no `index.html` **e** no `SITE_TEMPLATE` do `admin.html`. Use uma foto horizontal com a peça mais para a direita, porque o lado esquerdo da imagem desbota para o fundo.
+- **Foto de destaque do início:** fica no bloco `hero-media` (`data:image/jpeg;base64,...`) e é fixa, ou seja, não depende do catálogo. Para trocar, substitua o base64 no `index.html` **e** no `SITE_TEMPLATE` do `admin/index.html`. Use uma foto horizontal com a peça mais para a direita, porque o lado esquerdo da imagem desbota para o fundo.
 - **Adicionar um produto novo:** copie um bloco `<article class="card" ...> ... </article>` inteiro, cole antes do `</div>` que fecha `<div class="grid" id="grid">`, e ajuste categoria, título, preço, link e foto.
 
-## Painel (`admin.html`)
+## Painel (`admin/index.html`)
 
 O painel é tela de login + CRUD de produtos que fala com um backend em `/api` (funções serverless). Os **dados dos produtos** (título, preço, descrição etc.) ficam no **RavenDB**; as **fotos** continuam sendo commitadas no repositório via API do GitHub, como antes — só o texto/preço saiu do fluxo de commit, porque é o que mudava com mais frequência.
 
 ### Backend (`/api`) e deploy na Vercel
 
-O site estático (`index.html`, `admin.html`) continua no **GitHub Pages**, em `renataanoana.com.br` — só o backend (`/api`) roda na **Vercel**, no subdomínio `api.renataanoana.com.br`. Isso evita colocar a vitrine comercial no plano gratuito da Vercel (cujos termos restringem o Hobby a uso não-comercial) e mantém o GitHub Pages, que não tem essa restrição, cuidando do que já funciona.
+O site estático (`index.html`, `admin/index.html`) continua no **GitHub Pages**, em `renataanoana.com.br` — só o backend (`/api`) roda na **Vercel**, no subdomínio `api.renataanoana.com.br`. Isso evita colocar a vitrine comercial no plano gratuito da Vercel (cujos termos restringem o Hobby a uso não-comercial) e mantém o GitHub Pages, que não tem essa restrição, cuidando do que já funciona.
 
 - `api/login.js`, `api/logout.js`, `api/session.js` — autenticação por senha única, sessão em cookie `httpOnly` assinado (sem biblioteca de JWT, HMAC simples em `api/_lib/auth.js`).
 - `api/products.js` — CRUD (`GET`/`POST`/`PUT`/`DELETE`) dos produtos no RavenDB, protegido por sessão. As fotos continuam indo pro GitHub via `api/_lib/github.js`.
@@ -83,7 +83,7 @@ O site estático (`index.html`, `admin.html`) continua no **GitHub Pages**, em `
 
 Passos para publicar:
 
-1. Importar este repositório na Vercel (framework "Other", sem build command — o deploy da Vercel serve só o `/api`; o `index.html`/`admin.html` publicados por ela não são usados, quem serve o site é o GitHub Pages).
+1. Importar este repositório na Vercel (framework "Other", sem build command — o deploy da Vercel serve só o `/api`; o `index.html`/`admin/index.html` publicados por ela não são usados, quem serve o site é o GitHub Pages).
 2. Configurar as variáveis de ambiente do projeto na Vercel (veja `.env.example`):
    - `ADMIN_PASSWORD_HASH` — hash bcrypt da senha da Renata.
    - `SESSION_SECRET` — string aleatória longa.
