@@ -723,7 +723,7 @@
 </a>
 
 <button class="back-to-top" type="button" id="backToTop" aria-label="Voltar ao topo">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path id="backToTopArrow" d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto do produto em detalhe">
@@ -1069,16 +1069,41 @@
   var year = document.querySelector('[data-year]');
   if(year){ year.textContent = new Date().getFullYear(); }
 
-  // botão de voltar ao topo: só aparece depois de rolar a página
+  // botão de voltar ao topo: só aparece depois de rolar a página.
+  // No celular, onde o menu não mostra os links Início/Catálogo/Contato,
+  // o mesmo botão também aparece no topo da página apontando pra baixo,
+  // pra levar direto ao rodapé (onde fica o contato).
   var backToTop = document.getElementById('backToTop');
-  if(backToTop){
+  var backToTopArrow = document.getElementById('backToTopArrow');
+  var footer = document.getElementById('contato');
+  var UP_ARROW = 'M12 19V5M5 12l7-7 7 7';
+  var DOWN_ARROW = 'M12 5v14M5 12l7 7 7-7';
+  if(backToTop && backToTopArrow && footer){
+    var mode = 'up';
     function updateBackToTop(){
-      backToTop.classList.toggle('is-visible', window.scrollY > 400);
+      var isMobile = window.innerWidth < 900;
+      var scrolled = window.scrollY > 400;
+      if(scrolled){
+        mode = 'up';
+        backToTop.classList.add('is-visible');
+      } else if(isMobile){
+        mode = 'down';
+        backToTop.classList.add('is-visible');
+      } else {
+        backToTop.classList.remove('is-visible');
+      }
+      backToTopArrow.setAttribute('d', mode === 'up' ? UP_ARROW : DOWN_ARROW);
+      backToTop.setAttribute('aria-label', mode === 'up' ? 'Voltar ao topo' : 'Ir para o rodapé');
     }
     backToTop.addEventListener('click', function(){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if(mode === 'up'){
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
     window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('resize', updateBackToTop);
     updateBackToTop();
   }
 })();
