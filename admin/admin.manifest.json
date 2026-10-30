@@ -1,8 +1,8 @@
 {
   "name": "Painel Renata Anoana",
   "short_name": "Painel",
-  "start_url": "/admin.html",
-  "scope": "/admin.html",
+  "start_url": "/admin/",
+  "scope": "/admin/",
   "display": "standalone",
   "background_color": "#FEF6F4",
   "theme_color": "#E88D94",
