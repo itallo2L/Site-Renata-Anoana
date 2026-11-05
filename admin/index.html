@@ -132,6 +132,13 @@
     border-bottom:1px solid var(--border);
   }
   .category-row:last-child{border-bottom:none;}
+
+  @media (max-width:560px){
+    .modal{padding:20px;}
+    .row2{grid-template-columns:1fr;gap:0;}
+    .modal-actions{flex-direction:column;align-items:stretch;gap:8px;}
+    .modal-actions .btn{width:100%;}
+  }
   .category-row .name{font-weight:600;flex:1;}
   .category-row .count{color:var(--text-muted);font-size:12px;}
   .category-row .reassign{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap;}
